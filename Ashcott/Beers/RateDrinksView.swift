@@ -52,8 +52,14 @@ struct RateDrinksView: View {
 
             }
 
-            Text(drink.displayName)
+            Text("\(drink.id.dropFirst(2)) - \(drink.displayName)")
                 .font(.largeTitle)
+            
+            if drink.brewer != nil {
+                Text(drink.displayBrewer)
+                    .padding(.top, -35)
+                    .font(.title3)
+            }
 
             HStack {
                 ForEach(0..<rateTotal, id: \.self) { rating in
