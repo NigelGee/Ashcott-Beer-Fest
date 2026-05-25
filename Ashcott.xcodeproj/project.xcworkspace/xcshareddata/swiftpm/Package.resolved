@@ -1,0 +1,15 @@
+{
+  "originHash" : "b06a6d8b5681a47a2be7a10227d0f3e08b2fb2e43ab6caa75bdbdc22ff619c70",
+  "pins" : [
+    {
+      "identity" : "afmessageui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NigelGee/AFMessageUI",
+      "state" : {
+        "revision" : "23952bb9df3553981dc880c1f0fe5bd07e056693",
+        "version" : "2.0.10"
+      }
+    }
+  ],
+  "version" : 3
+}
