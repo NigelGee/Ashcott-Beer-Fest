@@ -10,6 +10,7 @@ import SwiftUI
 
 struct BeersView: View {
     @Environment(\.modelContext) var modelContext
+    @Environment(\.scenePhase) var scenePhase
     @State private var showFood = false
     @State private var showMusic = false
     @State private var showResetAlert = false
@@ -170,6 +171,13 @@ struct BeersView: View {
             .sheet(isPresented: $loadingError) {
                 ErrorLoadingView {
                     await fetch()
+                }
+            }
+            .onChange(of: scenePhase) {
+                if scenePhase == .active {
+                    Task {
+                        await fetch()
+                    }
                 }
             }
         }
