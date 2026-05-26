@@ -14,11 +14,13 @@ class RatedDrink {
     var rate: Int
     var total: Int
     var symbol: String
+    var createdOn: Date
 
-    init(id: String, rate: Int, total: Int, symbol: String) {
+    init(id: String, rate: Int, total: Int, symbol: String, createdOn: Date = .now) {
         self.id = id
         self.rate = rate
         self.total = total
         self.symbol = symbol
+        self.createdOn = createdOn
     }
 }

@@ -45,6 +45,14 @@ struct BeersView: View {
                                     HStack(alignment: .top) {
                                         Text("\(item.id.dropFirst(2)) - \(item.displayName)")
 
+                                        if let award = item.award {
+                                            Text(award)
+                                                .foregroundStyle(.white)
+                                                .font(.headline)
+                                                .padding(.horizontal, 7)
+                                                .background(awardColor(for: award), in: .capsule)
+                                        }
+
 
                                         if let abv = item.abv {
                                             Spacer()
@@ -134,7 +142,10 @@ struct BeersView: View {
             .padding()
             .navigationTitle("Ales and Cider")
             .navigationBarTitleDisplayMode(.inline)
-            .task { await fetch() }
+            .task {
+                await fetch()
+                purgeRatedDrinks()
+            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Entertainment", systemImage: "music.quarternote.3") {
@@ -201,6 +212,15 @@ struct BeersView: View {
         }
     }
 
+    func awardColor(for award: String) -> Color {
+        switch award {
+        case "1st": .orange
+        case "2nd": .yellow
+        case "3rd": .brown
+        default: .red
+        }
+    }
+
     /// Call for get JSON data from URL
     /// requires `@State private var name = [Decodable]()`
     /// and `.task { await fetch() }`
@@ -211,6 +231,14 @@ struct BeersView: View {
         } catch {
             loadingError.toggle()
         }
+    }
+
+    func purgeRatedDrinks() {
+        for ratedDrink in ratedDrinks where ratedDrink.createdOn < .now.add(year: -1) {
+            modelContext.delete(ratedDrink)
+        }
+
+        try? modelContext.save()
     }
 }
 

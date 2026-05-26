@@ -12,6 +12,7 @@ nonisolated struct Drinks: Codable {
         struct Item: Codable, Identifiable, Comparable {
             var id: String
             var name: String
+            var award: String?
             var abv: Double?
             var detail: String
             var brewer: String?
@@ -28,7 +29,7 @@ nonisolated struct Drinks: Codable {
                 lhs.id < rhs.id
             }
 
-            static let example = Item(id: "2501", name: "Badgworth IPA", detail: "", brewer: "[Badgworth Brewhouse, Somerset](https://badgworthbrewhouse.com)", canRate: true)
+            static let example = Item(id: "2501", name: "Badgworth IPA", award: "1st", detail: "", brewer: "[Badgworth Brewhouse, Somerset](https://badgworthbrewhouse.com)", canRate: true)
         }
 
         var title: String
