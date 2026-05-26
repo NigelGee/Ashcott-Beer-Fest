@@ -120,6 +120,9 @@ struct BeersView: View {
                                     .padding(.top)
                             }
 
+                            Text("[View previous years beers list](https://www.ashcottbeerfest.org/page8.html)")
+                                .padding(.bottom)
+
                             Button {
                                 showResetAlert.toggle()
                             } label: {
