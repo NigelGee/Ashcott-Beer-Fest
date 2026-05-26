@@ -8,7 +8,7 @@
 import Foundation
 
 extension Date {
-    /// Returns a date by add a number of days to given date.
+    /// Returns a date by add a number of a period to given date.
     /// - Parameter year: A number to advance the date by a years.
     /// - Parameter month: A number to advance the date by a months.
     /// - Parameter day: A number to advance the date by a daya.
