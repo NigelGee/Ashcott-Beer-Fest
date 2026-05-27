@@ -14,9 +14,13 @@ struct BeersView: View {
     @State private var showFood = false
     @State private var showMusic = false
     @State private var showResetAlert = false
+    @State private var showDeleteRating = false
 
     @State private var drinks: Drinks?
     @State private var loadingError = false
+
+    @State private var deletedRatedDrink = ""
+    @State private var deletedRatedName = "this item"
 
     @Query var ratedDrinks: [RatedDrink]
 
@@ -104,6 +108,11 @@ struct BeersView: View {
                                                 Spacer()
                                             }
                                             .background(.cyan.gradient, in: .capsule)
+                                            .onLongPressGesture {
+                                                deletedRatedName = item.name
+                                                deletedRatedDrink = ratedDrink.id
+                                                showDeleteRating.toggle()
+                                            }
                                         } else {
                                             Button {
                                                 rateDrinkItem = item
@@ -194,6 +203,15 @@ struct BeersView: View {
                     }
                 }
             }
+            .alert("Delete Ratings", isPresented: $showDeleteRating) {
+                Button(role: .destructive) {
+                    deleteRating(for: deletedRatedDrink)
+                } label: {
+                    Text("Delete")
+                }
+            } message: {
+                Text("Are you sure you want to delete the rating for \(deletedRatedName)? This action can not be undone!")
+            }
         }
     }
 
@@ -233,6 +251,13 @@ struct BeersView: View {
             drinks = try await items
         } catch {
             loadingError.toggle()
+        }
+    }
+
+    func deleteRating(for ratedDrinkID: String) {
+        for ratedDrink in ratedDrinks where ratedDrink.id == ratedDrinkID {
+            modelContext.delete(ratedDrink)
+            try? modelContext.save()
         }
     }
 
