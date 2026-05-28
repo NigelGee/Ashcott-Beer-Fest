@@ -91,7 +91,7 @@ struct RateDrinksView: View {
 
             Spacer()
         }
-        .padding()
+        .padding(.horizontal)
     }
 
     func confirm() {
