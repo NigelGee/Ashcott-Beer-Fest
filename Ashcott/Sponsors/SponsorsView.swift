@@ -60,6 +60,8 @@ struct SponsorsView: View {
                                         VStack(alignment: .leading) {
                                             if let url = charity.url {
                                                 Link("\(url)", destination: url)
+                                                    .accessibilityElement()
+                                                    .accessibilityLabel("\(charity.title) website")
                                             }
 
                                             AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(charity.image)")) { phase in

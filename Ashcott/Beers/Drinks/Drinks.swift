@@ -33,8 +33,11 @@ nonisolated struct Drinks: Codable {
                 id: "2501",
                 name: "Badgworth IPA",
                 award: "1st",
-                detail: "",
+                abv: 4.4,
+                detail: "Premium Pale Ale.",
                 brewer: "[Badgworth Brewhouse, Somerset](https://badgworthbrewhouse.com)",
+                sponsor: "[Holland & Odam](https://www.hollandandodam.co.uk)",
+                sponsorTel: "01458 841411",
                 canRate: true
             )
         }

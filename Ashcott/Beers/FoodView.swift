@@ -38,6 +38,7 @@ struct FoodView: View {
                                         ForEach(type.components(separatedBy: " "), id: \.self) { text in
                                             Text(text)
                                                 .bgColor(for: text)
+                                                .accessibilityLabel(typeAccessibilityLabel(for: text))
                                         }
                                     }
                                 }
@@ -81,6 +82,15 @@ struct FoodView: View {
             food = try await items
         } catch {
             print("Failed to fetch data!")
+        }
+    }
+
+    func typeAccessibilityLabel(for type: String) -> String {
+        switch type {
+        case "G": "Gluten Free"
+        case "V": "Vegetarian"
+        case "Ve": "vegan"
+        default: "Unknown"
         }
     }
 }

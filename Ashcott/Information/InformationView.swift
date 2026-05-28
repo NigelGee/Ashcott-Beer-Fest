@@ -57,6 +57,7 @@ struct InformationView: View {
                             .clipShape(.capsule)
                             .padding(.bottom)
                             .foregroundStyle(.white)
+                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
 
                             Text(info.headerTextDisplay)
                                 .padding(.bottom)

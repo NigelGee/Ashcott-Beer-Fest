@@ -46,51 +46,10 @@ struct BeersView: View {
                                     .padding(.bottom, 5)
 
                                 ForEach(category.items.sorted()) { item in
-                                    HStack(alignment: .top) {
-                                        Text("\(item.id.dropFirst(2)) - \(item.displayName)")
 
-                                        if let award = item.award {
-                                            Text(award)
-                                                .foregroundStyle(.white)
-                                                .font(.headline)
-                                                .padding(.horizontal, 7)
-                                                .background(awardColor(for: award), in: .capsule)
-                                        }
+                                    BeerItemTitleView(item: item)
 
-
-                                        if let abv = item.abv {
-                                            Spacer()
-                                            let newABV = abv / 100
-                                            HStack(spacing: 0) {
-                                                Text(newABV.formatted(.percent))
-                                                Text(" abv")
-                                            }
-                                        }
-                                    }
-                                    .font(.title3)
-                                    .bold()
-
-                                    if item.brewer != nil {
-                                        Text(item.displayBrewer)
-                                            .font(.headline)
-                                            .foregroundStyle(.indigo)
-                                    }
-
-                                    Text(item.displayDetail)
-
-
-                                    if item.sponsor != nil {
-                                        HStack(spacing: 0) {
-                                            Text("Sponsor by: ")
-                                                .foregroundStyle(.secondary)
-                                            Text(item.displaySponsor)
-                                                .foregroundStyle(.indigo)
-                                        }
-                                    }
-
-                                    if let phone = item.sponsorTel {
-                                        Link("Telephone: \(phone)", destination: URL(string: "tel:\(phone.formatted)")!)
-                                    }
+                                    BeerItemDetailView(item: item)
 
                                     if item.canRate {
                                         if let ratedDrink = ratedDrinks.first(where: { $0.id == item.id } ) {
@@ -113,6 +72,9 @@ struct BeersView: View {
                                                 deletedRatedDrink = ratedDrink.id
                                                 showDeleteRating.toggle()
                                             }
+                                            .accessibilityElement()
+                                            .accessibilityLabel("\(ratedDrink.rate) out of \(ratedDrink.total)")
+                                            .accessibilityHint("Long press to delete ratings")
                                         } else {
                                             Button {
                                                 rateDrinkItem = item
@@ -171,12 +133,8 @@ struct BeersView: View {
                     }
                 }
             }
-            .navigationDestination(isPresented: $showFood) {
-                FoodView()
-            }
-            .navigationDestination(isPresented: $showMusic) {
-                EntertainmentView()
-            }
+            .navigationDestination(isPresented: $showFood, destination: FoodView.init)
+            .navigationDestination(isPresented: $showMusic, destination: EntertainmentView.init)
             .sheet(item: $rateDrinkItem) { item in
                 RateDrinksView(drink: item)
                     .presentationDetents([.medium])
@@ -192,9 +150,7 @@ struct BeersView: View {
                 Text("This operation can not be undone.")
             }
             .sheet(isPresented: $loadingError) {
-                ErrorLoadingView {
-                    await fetch()
-                }
+                ErrorLoadingView { await fetch() }
             }
             .onChange(of: scenePhase) {
                 if scenePhase == .active {
@@ -227,18 +183,9 @@ struct BeersView: View {
         case "star": .purple
         case "heart": .red
         case "mug": .brown
-        case "checkmark.circle": .red
+        case "checkmark.circle": .indigo
         case "circle": .orange
         default: .primary
-        }
-    }
-
-    func awardColor(for award: String) -> Color {
-        switch award {
-        case "1st": .orange
-        case "2nd": .indigo
-        case "3rd": .brown
-        default: .red
         }
     }
 

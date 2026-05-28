@@ -24,7 +24,7 @@ struct RateDrinksView: View {
         case "star": .purple
         case "heart": .red
         case "mug": .brown
-        case "checkmark.circle": .red
+        case "checkmark.circle": .indigo
         case "circle": .orange
         default: .primary
         }
@@ -71,6 +71,8 @@ struct RateDrinksView: View {
                         .onTapGesture {
                             currentRating = rating + 1
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("^[\(rating + 1) rating](inflect: true)")
                 }
             }
             .padding(.horizontal)

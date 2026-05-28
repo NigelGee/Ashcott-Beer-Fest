@@ -25,14 +25,27 @@ struct ErrorLoadingView: View {
                 """)
             }
 
-            Button("Try Again") {
+            Button {
                 Task {
                     await action()
                 }
                 dismiss()
+            } label: {
+                Text("Try Again")
+                    .frame(maxWidth: .infinity)
             }
+
             .buttonStyle(.bordered)
             .padding()
+
+            Button {
+                dismiss()
+            } label: {
+                Text("Dismiss")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonStyle(.bordered)
+            .padding(.horizontal)
         }
         .padding()
     }
