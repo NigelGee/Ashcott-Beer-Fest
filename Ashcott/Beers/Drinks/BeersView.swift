@@ -137,7 +137,8 @@ struct BeersView: View {
             .navigationDestination(isPresented: $showMusic, destination: EntertainmentView.init)
             .sheet(item: $rateDrinkItem) { item in
                 RateDrinksView(drink: item)
-                    .presentationDetents([.medium])
+                    .dynamicSheetDetent()
+                    .presentationBackground(.thickMaterial)
             }
             .alert("Are You Sure?", isPresented: $showResetAlert) {
                 Button(role: .destructive) {
