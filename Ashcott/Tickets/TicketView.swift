@@ -17,15 +17,22 @@ struct TicketView: View {
             Group {
                 if let ticket {
                     ScrollView {
-                        Text(ticket.descriptionDisplay)
-                            .padding(.horizontal)
+                        VStack(alignment: .leading) {
+                            if ticket.cutoffDate < .now {
+                                Text(ticket.closedText)
+                                    .foregroundStyle(.red)
+                                    .bold()
+                                    .padding()
+                            } else {
+                                Text("Tickets will be available on-line until \(Text(ticket.cutoffDate.formatted(date: .complete, time: .shortened)).bold()).")
+                                    .padding([.horizontal, .bottom])
+                            }
 
-                        if ticket.cutoffDate < .now {
-                            Text(ticket.closedText)
-                                .foregroundStyle(.red)
-                                .bold()
-                                .padding()
+                            Text(ticket.descriptionDisplay)
+                                .padding(.horizontal)
                         }
+
+
                         Divider()
                         ForEach(ticket.prices) { price in
                             VStack(alignment: .leading) {
