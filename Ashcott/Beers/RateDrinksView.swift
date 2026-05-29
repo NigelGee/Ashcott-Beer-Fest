@@ -73,6 +73,7 @@ struct RateDrinksView: View {
                         }
                         .accessibilityElement()
                         .accessibilityLabel("^[\(rating + 1) rating](inflect: true)")
+                        .dynamicTypeSize(..<DynamicTypeSize.xLarge)
                 }
             }
             .padding(.horizontal)

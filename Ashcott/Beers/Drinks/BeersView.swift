@@ -62,6 +62,7 @@ struct BeersView: View {
                                                         .imageScale(.large)
                                                         .padding(.vertical, 5)
                                                         .foregroundStyle(symbolColor(for: ratedDrink.symbol))
+                                                        .dynamicTypeSize(..<DynamicTypeSize.xLarge)
                                                 }
 
                                                 Spacer()
@@ -107,20 +108,14 @@ struct BeersView: View {
                             .buttonStyle(.plain)
                         }
                     }
+                    .padding()
                     .scrollIndicators(.hidden)
-                    .scrollBounceBehavior(.basedOnSize)
                 } else {
                     LoadingView()
                 }
             }
-            .dynamicTypeSize(..<DynamicTypeSize.xxLarge)
-            .padding()
+            .scrollBounceBehavior(.basedOnSize)
             .navigationTitle("Ales and Cider")
-            .navigationBarTitleDisplayMode(.inline)
-            .task {
-                await fetch()
-                purgeRatedDrinks()
-            }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Entertainment", systemImage: "music.quarternote.3") {
@@ -136,40 +131,45 @@ struct BeersView: View {
             }
             .navigationDestination(isPresented: $showFood, destination: FoodView.init)
             .navigationDestination(isPresented: $showMusic, destination: EntertainmentView.init)
-            .sheet(item: $rateDrinkItem) { item in
-                RateDrinksView(drink: item)
-                    .dynamicSheetDetent()
-                    .presentationBackground(.thickMaterial)
+        }
+        .task {
+            await fetch()
+            purgeRatedDrinks()
+        }
+
+        .sheet(item: $rateDrinkItem) { item in
+            RateDrinksView(drink: item)
+                .dynamicSheetDetent()
+                .presentationBackground(.thickMaterial)
+        }
+        .alert("Are You Sure?", isPresented: $showResetAlert) {
+            Button(role: .destructive) {
+                deleteRatings()
+            } label: {
+                Text("Reset")
+                    .foregroundStyle(.red)
             }
-            .alert("Are You Sure?", isPresented: $showResetAlert) {
-                Button(role: .destructive) {
-                    deleteRatings()
-                } label: {
-                    Text("Reset")
-                        .foregroundStyle(.red)
+        } message: {
+            Text("This operation can not be undone.")
+        }
+        .sheet(isPresented: $loadingError) {
+            ErrorLoadingView { await fetch() }
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                Task {
+                    await fetch()
                 }
-            } message: {
-                Text("This operation can not be undone.")
             }
-            .sheet(isPresented: $loadingError) {
-                ErrorLoadingView { await fetch() }
+        }
+        .alert("Delete Ratings", isPresented: $showDeleteRating) {
+            Button(role: .destructive) {
+                deleteRating(for: deletedRatedDrink)
+            } label: {
+                Text("Delete")
             }
-            .onChange(of: scenePhase) {
-                if scenePhase == .active {
-                    Task {
-                        await fetch()
-                    }
-                }
-            }
-            .alert("Delete Ratings", isPresented: $showDeleteRating) {
-                Button(role: .destructive) {
-                    deleteRating(for: deletedRatedDrink)
-                } label: {
-                    Text("Delete")
-                }
-            } message: {
-                Text("Are you sure you want to delete the rating for \(deletedRatedName)? This action can not be undone!")
-            }
+        } message: {
+            Text("Are you sure you want to delete the rating for \(deletedRatedName)? This action can not be undone!")
         }
     }
 
