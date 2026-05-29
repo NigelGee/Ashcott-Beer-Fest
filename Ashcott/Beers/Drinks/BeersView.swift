@@ -14,11 +14,11 @@ struct BeersView: View {
     @State private var showFood = false
     @State private var showMusic = false
     @State private var showResetAlert = false
-    @State private var showDeleteRating = false
 
     @State private var drinks: Drinks?
     @State private var loadingError = false
 
+    @State private var showDeleteRating = false
     @State private var deletedRatedDrink = ""
     @State private var deletedRatedName: LocalizedStringResource = "this item"
 
@@ -113,6 +113,7 @@ struct BeersView: View {
                     LoadingView()
                 }
             }
+            .dynamicTypeSize(..<DynamicTypeSize.xxLarge)
             .padding()
             .navigationTitle("Ales and Cider")
             .navigationBarTitleDisplayMode(.inline)
