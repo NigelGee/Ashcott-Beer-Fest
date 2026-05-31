@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
 
 @main
 struct AshcottApp: App {
@@ -15,5 +16,10 @@ struct AshcottApp: App {
             ContentView()
         }
         .modelContainer(for: RatedDrink.self)
+    }
+
+    init() {
+//        try? Tips.resetDatastore()
+        try? Tips.configure()
     }
 }

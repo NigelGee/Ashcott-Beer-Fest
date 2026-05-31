@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import TipKit
 
 struct BeersView: View {
     @Environment(\.modelContext) var modelContext
@@ -25,7 +26,9 @@ struct BeersView: View {
     @Query var ratedDrinks: [RatedDrink]
 
     @State private var rateDrinkItem: Drinks.Category.Item?
-    
+
+    let deleteRatingsTip = DeleteRatingsTip()
+
     var body: some View {
         NavigationStack {
             Group {
@@ -71,11 +74,13 @@ struct BeersView: View {
                                             .onLongPressGesture {
                                                 deletedRatedName = item.displayName
                                                 deletedRatedDrink = ratedDrink.id
+                                                deleteRatingsTip.invalidate(reason: .actionPerformed)
                                                 showDeleteRating.toggle()
                                             }
                                             .accessibilityElement()
                                             .accessibilityLabel("\(ratedDrink.rate) out of \(ratedDrink.total)")
                                             .accessibilityHint("Long press to delete ratings")
+                                            .popoverTip(deleteRatingsTip, arrowEdge: .top)
                                         } else {
                                             Button {
                                                 rateDrinkItem = item
