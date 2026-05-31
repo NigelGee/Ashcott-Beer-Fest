@@ -136,7 +136,6 @@ struct BeersView: View {
             await fetch()
             purgeRatedDrinks()
         }
-
         .sheet(item: $rateDrinkItem) { item in
             RateDrinksView(drink: item)
                 .dynamicSheetDetent()
@@ -216,6 +215,33 @@ struct BeersView: View {
         }
 
         try? modelContext.save()
+    }
+
+    func sortedItems(category: Drinks.Category) -> [Drinks.Category.Item] {
+        category.items.sorted(by: { item1, item2 in
+
+                if ratedDrinks.first(where: { $0.id == item1.id } ) == nil,
+                   ratedDrinks.first(where: { $0.id == item2.id } ) == nil {
+                    return item1.id < item2.id
+                } else if ratedDrinks.first(where: { $0.id == item1.id } ) != nil,
+                          (ratedDrinks.first(where: { $0.id != item2.id } ) == nil) {
+                    return true
+                } else if ratedDrinks.first(where: { $0.id == item1.id } ) == nil,
+                          (ratedDrinks.first(where: { $0.id != item2.id } ) != nil) {
+                    return false
+                } else if let ratedDrink1 = ratedDrinks.first(where: { $0.id == item1.id } ),
+                           let ratedDrink2 = ratedDrinks.first(where:  { $0.id == item2.id} ) {
+
+                let absRating1 = ratedDrink1.rate / ratedDrink1.total
+                let absRating2 = ratedDrink2.rate / ratedDrink2.total
+
+                return absRating1 > absRating2
+
+                }
+
+                return false
+
+        })
     }
 }
 

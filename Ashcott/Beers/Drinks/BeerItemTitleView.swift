@@ -72,7 +72,7 @@ struct BeerItemTitleView: View {
         case "1st": .orange
         case "2nd": .indigo
         case "3rd": .brown
-        default: .red
+        default: .clear
         }
     }
 
