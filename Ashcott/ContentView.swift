@@ -26,7 +26,7 @@ struct ContentView: View {
                 NewsView(newsItems: newsItems)
             }
             .badge(badgeNumber)
-            Tab("Beers", systemImage: "mug", value: .beers, content: BeersView.init)
+            Tab("Beers", systemImage: "mug", value: .beers, content: DrinksView.init)
             Tab("Tickets", systemImage: "ticket", value: .ticket, content: TicketView.init)
             Tab("Sponsors", systemImage: "person.3", value: .sponsors, content: SponsorsView.init)
         }

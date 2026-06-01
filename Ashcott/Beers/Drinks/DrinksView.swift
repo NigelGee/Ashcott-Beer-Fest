@@ -1,15 +1,15 @@
 //
-//  BeersView.swift
+//  DrinksView.swift
 //  Ashcott
 //
-//  Created by Nigel Gee on 14/05/2026.
+//  Created by Nigel Gee on 01/06/2026.
 //
 
 import SwiftData
 import SwiftUI
 import TipKit
 
-struct BeersView: View {
+struct DrinksView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.scenePhase) var scenePhase
     @AppStorage("sortBy") var sortBy: SortBy = .barrel
@@ -57,8 +57,10 @@ struct BeersView: View {
                                     }
                                 }
                             }
+                        }
+                        .padding([.horizontal, .top])
 
-
+                        VStack(alignment: .leading) {
                             ForEach(drinks.categories) { category in
                                 Text(category.title)
                                     .font(.title)
@@ -108,32 +110,33 @@ struct BeersView: View {
                                             .buttonStyle(.bordered)
                                         }
                                     }
+
+                                    Divider()
+                                        .padding(.top)
                                 }
-
-                                Divider()
-                                    .padding(.top)
                             }
 
-                            Text("[View previous years beers list](https://www.ashcottbeerfest.org/page8.html)")
-                                .padding(.bottom)
+                            VStack(alignment: .leading) {
+                                Text("[View previous years beers list](https://www.ashcottbeerfest.org/page8.html)")
+                                    .padding(.bottom)
 
-                            Button {
-                                showResetAlert.toggle()
-                            } label: {
-                                Text("Reset Ratings")
-                                    .font(.title3)
-                                    .padding(.vertical, 5)
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                    .background(.red.gradient, in: .capsule)
-                                    .foregroundStyle(.white)
+                                Button {
+                                    showResetAlert.toggle()
+                                } label: {
+                                    Text("Reset Ratings")
+                                        .font(.title3)
+                                        .padding(.vertical, 5)
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .background(.red.gradient, in: .capsule)
+                                        .foregroundStyle(.white)
+                                }
+                                .buttonStyle(.plain)
                             }
-                            .buttonStyle(.plain)
                         }
+                        .padding(.horizontal)
                     }
-                    .padding()
-                    .scrollIndicators(.hidden)
                 } else {
-                    LoadingView()
+                   LoadingView()
                 }
             }
             .scrollBounceBehavior(.basedOnSize)
@@ -158,12 +161,17 @@ struct BeersView: View {
             await fetch()
             purgeRatedDrinks()
         }
+        .sheet(isPresented: $loadingError) {
+            ErrorLoadingView {
+                await fetch()
+            }
+        }
         .sheet(item: $rateDrinkItem) { item in
             RateDrinksView(drink: item)
                 .dynamicSheetDetent()
                 .presentationBackground(.thickMaterial)
         }
-        .alert("Are You Sure?", isPresented: $showResetAlert) {
+        .alert("Reset Ratings!", isPresented: $showResetAlert) {
             Button(role: .destructive) {
                 deleteRatings()
             } label: {
@@ -171,17 +179,7 @@ struct BeersView: View {
                     .foregroundStyle(.red)
             }
         } message: {
-            Text("This operation can not be undone.")
-        }
-        .sheet(isPresented: $loadingError) {
-            ErrorLoadingView { await fetch() }
-        }
-        .onChange(of: scenePhase) {
-            if scenePhase == .active {
-                Task {
-                    await fetch()
-                }
-            }
+            Text("This will delete all ratings that have been set!\n\nThis operation can not be undone.")
         }
         .alert("Delete Ratings", isPresented: $showDeleteRating) {
             Button(role: .destructive) {
@@ -190,7 +188,26 @@ struct BeersView: View {
                 Text("Delete")
             }
         } message: {
-            Text("Are you sure you want to delete the rating for \(deletedRatedName)? This action can not be undone!")
+            Text("Are you sure you want to delete the rating for \(deletedRatedName)?\n\nThis action can not be undone!")
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                Task {
+                    await fetch()
+                }
+            }
+        }
+    }
+
+    /// Call for get JSON data from URL
+    /// requires `@State private var name = [Decodable]()`
+    /// and `.task { await fetch() }`
+    func fetch() async {
+        do  {
+            async let drinkItems = try await URLSession.shared.decode(Drinks.self, from: "\(Base.url.rawValue)Drinks.json")
+            drinks = try await drinkItems
+        } catch {
+            loadingError.toggle()
         }
     }
 
@@ -209,18 +226,6 @@ struct BeersView: View {
         case "checkmark.circle": .indigo
         case "circle": .orange
         default: .primary
-        }
-    }
-
-    /// Call for get JSON data from URL
-    /// requires `@State private var name = [Decodable]()`
-    /// and `.task { await fetch() }`
-    func fetch() async {
-        do  {
-            async let items = try await URLSession.shared.decode(Drinks.self, from: "\(Base.url.rawValue)Drinks.json")
-            drinks = try await items
-        } catch {
-            loadingError.toggle()
         }
     }
 
@@ -261,15 +266,9 @@ struct BeersView: View {
                 }
             }
         }
-
     }
 }
 
-#Preview("Light") {
-    BeersView()
-}
-
-#Preview("Dark") {
-    BeersView()
-        .preferredColorScheme(.dark)
+#Preview {
+    DrinksView()
 }

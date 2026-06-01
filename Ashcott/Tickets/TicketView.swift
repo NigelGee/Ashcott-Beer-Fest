@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TicketView: View {
-
     @State private var ticket: Ticket?
     @State private var loadingError = false
 
@@ -107,18 +106,18 @@ struct TicketView: View {
     /// Call for get JSON data from URL
     /// requires `@State private var name = [Decodable]()`
     /// and `.task { await fetch() }`
-        func fetch() async {
-            do  {
-                async let item = try await URLSession.shared.decode(
-                    Ticket.self,
-                    from: "\(Base.url.rawValue)Tickets.json",
-                    dateDecodingStrategy: .formatted(.dateTime)
-                )
-                ticket = try await item
-            } catch {
-                loadingError.toggle()
-            }
+    func fetch() async {
+        do  {
+            async let item = try await URLSession.shared.decode(
+                Ticket.self,
+                from: "\(Base.url.rawValue)Tickets.json",
+                dateDecodingStrategy: .formatted(.dateTime)
+            )
+            ticket = try await item
+        } catch {
+            loadingError.toggle()
         }
+    }
 }
 
 #Preview("Light") {
