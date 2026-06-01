@@ -35,7 +35,7 @@ struct FoodView: View {
 
                                 if let type = item.type {
                                     HStack {
-                                        ForEach(type.components(separatedBy: " "), id: \.self) { text in
+                                        ForEach(type.components(separatedBy: " ").sorted(), id: \.self) { text in
                                             Text(text)
                                                 .bgColor(for: text)
                                                 .accessibilityLabel(typeAccessibilityLabel(for: text))
