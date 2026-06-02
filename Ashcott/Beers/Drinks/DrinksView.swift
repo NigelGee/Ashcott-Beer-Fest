@@ -269,6 +269,20 @@ struct DrinksView: View {
             category.items.sorted { item1, item2 in
                 item1.name < item2.name
             }
+        case .highestABV:
+            category.items.sorted { item1, item2 in
+                if let abv1 = item1.abv, let abv2 = item2.abv {
+                    return abv1 > abv2
+                }
+                return false
+            }
+        case .lowestABV:
+            category.items.sorted { item1, item2 in
+                if let abv1 = item1.abv, let abv2 = item2.abv {
+                    return abv1 < abv2
+                }
+                return false
+            }
         }
     }
 }

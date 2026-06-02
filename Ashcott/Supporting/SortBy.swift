@@ -11,4 +11,6 @@ enum SortBy: String, CaseIterable {
     case barrel = "Barrel Number"
     case ratings = "Highest Rating"
     case alphabetical = "Alphabetical"
+    case highestABV = "Highest ABV"
+    case lowestABV = "Lowest ABV"
 }
