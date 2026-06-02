@@ -52,7 +52,7 @@ struct RateDrinksView: View {
 
             }
 
-            Text("\(drink.id.dropFirst(2)) - \(drink.displayName)")
+            Text("\(drink.id.dropFirst(2)) - \(drink.name)")
                 .font(.largeTitle)
             
             if drink.brewer != nil {

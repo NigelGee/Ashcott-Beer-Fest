@@ -265,6 +265,10 @@ struct DrinksView: View {
                     return item1.id < item2.id
                 }
             }
+        case .alphabetical:
+            category.items.sorted { item1, item2 in
+                item1.name < item2.name
+            }
         }
     }
 }

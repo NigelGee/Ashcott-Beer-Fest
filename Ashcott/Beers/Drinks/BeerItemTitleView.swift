@@ -13,7 +13,7 @@ struct BeerItemTitleView: View {
     var body: some View {
         ViewThatFits {
             HStack(alignment: .top) {
-                Text("\(item.id.dropFirst(2)) - \(item.displayName)")
+                Text("\(item.id.dropFirst(2)) - \(item.name)")
 
                 if let award = item.award {
                     Text(award)
@@ -39,7 +39,7 @@ struct BeerItemTitleView: View {
 
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
-                    Text("\(item.id.dropFirst(2)) - \(item.displayName)")
+                    Text("\(item.id.dropFirst(2)) - \(item.name)")
 
                     if let award = item.award {
                         Text(award)
