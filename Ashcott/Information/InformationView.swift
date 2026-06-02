@@ -40,7 +40,7 @@ struct InformationView: View {
                         }
 
                         VStack {
-                            Text(info.titleDisplay)
+                            Text(info.displayTitle)
                                 .font(.largeTitle)
                                 .multilineTextAlignment(.center)
 
@@ -59,12 +59,12 @@ struct InformationView: View {
                             .foregroundStyle(.white)
                             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
 
-                            Text(info.headerTextDisplay)
+                            Text(info.displayHeaderText)
                                 .padding(.bottom)
                                 .font(.title3)
                                 .foregroundStyle(.mint)
 
-                            Text(info.bodyTextDisplay)
+                            Text(info.displayBodyText)
                                 .padding(.bottom)
 
                             Button {
@@ -80,7 +80,7 @@ struct InformationView: View {
                             Button {
                                 selectedTab = .ticket
                             } label: {
-                                Text(info.ticketTextDisplay)
+                                Text(info.displayTicketText)
                                     .font(.title3)
                                     .frame(maxWidth: .infinity)
                             }
@@ -90,18 +90,18 @@ struct InformationView: View {
                                 .padding(.bottom)
 
                             GroupBox {
-                                Text(info.helpTitleDisplay)
+                                Text(info.displayHelpTitle)
                                     .font(.title2)
 
                                 GroupBox(info.volunteersTitle) {
-                                    Text(info.volunteersTextDisplay)
+                                    Text(info.displayVolunteersText)
                                 }
 
                                 Button {
                                     selectedTab = .sponsors
                                 } label: {
                                     GroupBox(info.sponsorTitle) {
-                                        Text(info.sponsorTextDisplay)
+                                        Text(info.displaySponsorText)
                                     }
                                 }
                                 .buttonStyle(.plain)

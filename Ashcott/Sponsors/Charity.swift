@@ -15,12 +15,12 @@ nonisolated struct CharityDetails: Codable {
         var image: String
 
         var id: UUID { UUID() }
-        var detailDisplay: LocalizedStringResource { "\(detail)" }
+        var displayDetail: LocalizedStringResource { "\(detail)" }
     }
 
     var mainTitle: String
     private var description: String
     var charities: [Charity]
 
-    var descriptionDisplay: LocalizedStringResource { "\(description)" }
+    var displayDescription: LocalizedStringResource { "\(description)" }
 }

@@ -22,7 +22,7 @@ struct ContactView: View {
             if let contact {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text(contact.bodyTextDisplay)
+                        Text(contact.displayBodyText)
                             .padding(.bottom)
                         ForEach(contact.emails) { email in
                             Button {

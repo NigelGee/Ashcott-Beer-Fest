@@ -18,7 +18,7 @@ struct SponsorsView: View {
                 if let charity, let sponsor {
                     ScrollView {
                         GroupBox(sponsor.mainTitle) {
-                            Text(sponsor.descriptionDisplay)
+                            Text(sponsor.displayDescription)
                             AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(sponsor.image)")) { phase in
                                 if let image = phase.image {
                                     image
@@ -53,7 +53,7 @@ struct SponsorsView: View {
                             }
 
                             GroupBox(charity.mainTitle) {
-                                Text(charity.descriptionDisplay)
+                                Text(charity.displayDescription)
 
                                 ForEach(charity.charities) { charity in
                                     GroupBox(charity.title) {
@@ -81,7 +81,7 @@ struct SponsorsView: View {
                                                 }
                                             }
 
-                                            Text(charity.detailDisplay)
+                                            Text(charity.displayDetail)
                                         }
                                     }
                                 }

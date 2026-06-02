@@ -25,5 +25,5 @@ nonisolated struct Sponsorship: Codable {
     var sponsors: [Sponsor]
     var yearTitle: String
 
-    var descriptionDisplay: LocalizedStringResource { "\(description)" }
+    var displayDescription: LocalizedStringResource { "\(description)" }
 }

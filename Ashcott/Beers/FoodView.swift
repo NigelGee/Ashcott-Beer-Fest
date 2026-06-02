@@ -49,7 +49,7 @@ struct FoodView: View {
                             }
                             .font(.title2)
 
-                            Text(item.detailDisplay)
+                            Text(item.displayDetail)
                                 .foregroundStyle(.secondary)
 
                             Divider()

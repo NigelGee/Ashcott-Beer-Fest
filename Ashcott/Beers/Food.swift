@@ -14,7 +14,7 @@ nonisolated struct Food: Codable {
         var amount: Double
         var type: String?
 
-        var detailDisplay: LocalizedStringResource { "\(detail)" }
+        var displayDetail: LocalizedStringResource { "\(detail)" }
         var id: UUID { UUID() }
       }
 

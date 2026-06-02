@@ -16,7 +16,7 @@ nonisolated struct Ticket: Codable {
         var url: URL?
         var image: String?
 
-        var descriptionDisplay: LocalizedStringResource { "\(description)" }
+        var displayDescription: LocalizedStringResource { "\(description)" }
         var id: UUID { UUID() }
     }
     

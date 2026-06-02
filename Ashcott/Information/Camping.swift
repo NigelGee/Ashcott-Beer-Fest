@@ -12,6 +12,6 @@ nonisolated struct Camping: Codable {
     private var welcomeText: String
     private var bodyText: String
 
-    var welcomeTextDisplay: LocalizedStringResource { "\(welcomeText)" }
-    var bodyTextDisplay: LocalizedStringResource { "\(bodyText)"}
+    var displayWelcomeText: LocalizedStringResource { "\(welcomeText)" }
+    var displayBodyText: LocalizedStringResource { "\(bodyText)"}
 }

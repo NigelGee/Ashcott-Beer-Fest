@@ -17,13 +17,13 @@ struct EntertainmentView: View {
             if let entertainment {
                 ScrollView {
                     VStack(alignment: .leading) {
-                        Text(entertainment.descriptionDisplay)
+                        Text(entertainment.displayDescription)
                             .padding(.bottom)
 
                         Text(entertainment.bandTitle)
                             .font(.largeTitle)
 
-                        Text("Sponsored by: \(entertainment.sponsorDisplay)")
+                        Text("Sponsored by: \(entertainment.displaySponsor)")
 
                         if let phone = entertainment.sponsorTel {
                             Link(phone, destination: URL(string: "tel:\(phone.formatted)")!)
@@ -57,8 +57,8 @@ struct EntertainmentView: View {
                                             }
                                         }
 
-                                        if band.details != nil {
-                                            Text(band.detailsDisplay)
+                                        if band.detail != nil {
+                                            Text(band.displayDetail)
                                                 .foregroundStyle(.secondary)
                                         }
                                     }

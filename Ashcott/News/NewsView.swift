@@ -21,7 +21,7 @@ struct NewsView: View {
                                 .font(.title2)
                                 .bold()
 
-                            Text(item.descriptionDisplay)
+                            Text(item.displayDescription)
                         }
 
                         if let image = item.image {

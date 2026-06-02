@@ -11,14 +11,14 @@ nonisolated struct Entertainment: Codable {
     struct Music: Codable, Identifiable {
         struct Band: Codable, Identifiable {
             var name: String
-            var details: String?
+            var detail: String?
             var time: String?
             var startTime: Date?
             var endTime: Date?
 
             var id: UUID { UUID() }
 
-            var detailsDisplay: LocalizedStringResource { "\(details ?? "")" }
+            var displayDetail: LocalizedStringResource { "\(detail ?? "")" }
         }
 
         var day: String
@@ -34,6 +34,6 @@ nonisolated struct Entertainment: Codable {
     var sponsorTel: String?
 
 
-    var sponsorDisplay: LocalizedStringResource { "\(sponsor)" }
-    var descriptionDisplay: LocalizedStringResource { "\(description)" }
+    var displaySponsor: LocalizedStringResource { "\(sponsor)" }
+    var displayDescription: LocalizedStringResource { "\(description)" }
 }

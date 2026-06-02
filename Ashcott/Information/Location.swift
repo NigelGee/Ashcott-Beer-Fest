@@ -22,7 +22,7 @@ nonisolated struct Location: Codable {
     var address: Address
     var bodyText: String
 
-    var bodyTextDisplay: LocalizedStringResource { "\(bodyText)" }
+    var displayBodyText: LocalizedStringResource { "\(bodyText)" }
     var coordinates: CLLocationCoordinate2D { .init(latitude: latitude, longitude: longitude) }
 
     static let example = Location(

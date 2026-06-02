@@ -38,7 +38,7 @@ struct LocationView: View {
                         Text(loc.address.town)
                         Text(loc.address.postcode)
 
-                        Text(loc.bodyTextDisplay)
+                        Text(loc.displayBodyText)
                             .padding(.top)
 
                         Button {

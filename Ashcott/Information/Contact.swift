@@ -19,5 +19,5 @@ nonisolated struct Contact: Codable {
     private var bodyText: String
     var emails: [Email]
 
-    var bodyTextDisplay: LocalizedStringResource { "\(bodyText)" }
+    var displayBodyText: LocalizedStringResource { "\(bodyText)" }
 }

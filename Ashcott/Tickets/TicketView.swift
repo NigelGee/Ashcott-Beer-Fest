@@ -62,7 +62,7 @@ struct TicketView: View {
                                                 .font(.title2)
                                                 .bold()
                                         }
-                                        Text(price.descriptionDisplay)
+                                        Text(price.displayDescription)
 
                                     }
                                     if let url = price.url {

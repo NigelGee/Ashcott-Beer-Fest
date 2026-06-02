@@ -34,12 +34,12 @@ struct CampView: View {
                     }
 
                     VStack {
-                        Text(camp.welcomeTextDisplay)
+                        Text(camp.displayWelcomeText)
                             .font(.title3)
                             .foregroundStyle(.mint)
                             .padding(.vertical)
 
-                        Text(camp.bodyTextDisplay)
+                        Text(camp.displayBodyText)
                     }
                     .padding(.horizontal)
                 }

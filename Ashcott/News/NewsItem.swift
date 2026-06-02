@@ -13,7 +13,7 @@ struct NewsItem: Codable, Identifiable, Comparable {
     var image: String?
 
     var id: UUID { UUID() }
-    var descriptionDisplay: LocalizedStringResource { "\(description)" }
+    var displayDescription: LocalizedStringResource { "\(description)" }
 
     static func <(lhs: NewsItem, rhs: NewsItem) -> Bool {
         lhs.newsDate > rhs.newsDate

@@ -22,13 +22,13 @@ nonisolated struct Information: Codable {
     var sponsorTitle: String
     var sponsorText: String
 
-    var titleDisplay: LocalizedStringResource { "\(title)"}
-    var headerTextDisplay: LocalizedStringResource { "\(headerText)"}
-    var bodyTextDisplay: LocalizedStringResource { "\(bodyText)" }
-    var ticketTextDisplay: LocalizedStringResource { "\(ticketText)"}
-    var helpTitleDisplay: LocalizedStringResource { "\(helpTitle)"}
-    var volunteersTextDisplay: LocalizedStringResource { "\(volunteersText)"}
-    var sponsorTextDisplay: LocalizedStringResource { "\(sponsorText)"}
+    var displayTitle: LocalizedStringResource { "\(title)"}
+    var displayHeaderText: LocalizedStringResource { "\(headerText)"}
+    var displayBodyText: LocalizedStringResource { "\(bodyText)" }
+    var displayTicketText: LocalizedStringResource { "\(ticketText)"}
+    var displayHelpTitle: LocalizedStringResource { "\(helpTitle)"}
+    var displayVolunteersText: LocalizedStringResource { "\(volunteersText)"}
+    var displaySponsorText: LocalizedStringResource { "\(sponsorText)"}
 
     static let example = Information(
         title: "Welcome\n- As seen on TV! -",
