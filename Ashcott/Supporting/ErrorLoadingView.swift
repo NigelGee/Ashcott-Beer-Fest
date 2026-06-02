@@ -39,6 +39,7 @@ struct ErrorLoadingView: View {
                     Text("Try Again")
                         .padding(.horizontal)
                 }
+                .tint(.red)
                 .buttonStyle(.bordered)
             }
             .toolbar {
