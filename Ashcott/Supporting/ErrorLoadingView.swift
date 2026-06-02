@@ -12,42 +12,43 @@ struct ErrorLoadingView: View {
     let action: () async -> Void
 
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                Text("Something went wrong!")
-                    .font(.title)
-
-                Text ("It might be…")
-                    .font(.title3)
-                Text("""
-                1. You not connect to internet!
-                2. It has recent updated. Please wait and try again.
-                """)
-            }
-
-            Button {
-                Task {
-                    await action()
+        NavigationStack {
+            ContentUnavailableView {
+                Label("Something went wrong!", systemImage: "wifi")
+            } description: {
+                VStack(alignment: .leading) {
+                    Text("It might be…")
+                        .font(.title2)
+                    HStack(alignment: .top) {
+                        Text("1.")
+                        Text("You not connect to internet!")
+                    }
+                    HStack(alignment: .top) {
+                        Text("2.")
+                        Text("It has recent updated. Please wait and try again.")
+                            .multilineTextAlignment(.leading)
+                    }
                 }
-                dismiss()
-            } label: {
-                Text("Try Again")
-                    .frame(maxWidth: .infinity)
+            } actions: {
+                Button {
+                    Task {
+                        await action()
+                    }
+                    dismiss()
+                } label: {
+                    Text("Try Again")
+                        .padding(.horizontal)
+                }
+                .buttonStyle(.bordered)
             }
-
-            .buttonStyle(.bordered)
-            .padding()
-
-            Button {
-                dismiss()
-            } label: {
-                Text("Dismiss")
-                    .frame(maxWidth: .infinity)
+            .toolbar {
+                Button {
+                    dismiss()
+                } label: {
+                    Label("Dismiss", systemImage: "xmark.circle")
+                }
             }
-            .buttonStyle(.bordered)
-            .padding(.horizontal)
         }
-        .padding()
     }
 }
 

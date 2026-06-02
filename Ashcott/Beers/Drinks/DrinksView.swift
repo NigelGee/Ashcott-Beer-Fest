@@ -269,6 +269,11 @@ struct DrinksView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     DrinksView()
+}
+
+#Preview("Dark") {
+    DrinksView()
+        .preferredColorScheme(.dark)
 }
