@@ -20,7 +20,6 @@ nonisolated struct Drinks: Codable {
             var sponsorTel: String?
             var canRate: Bool
 
-            var displayName: LocalizedStringResource { "\(name)" }
             var displayDetail: LocalizedStringResource { "\(detail)" }
             var displayBrewer: LocalizedStringResource { "\(brewer ?? "")" }
             var displaySponsor: LocalizedStringResource { "\(sponsor ?? "")" }

@@ -31,20 +31,18 @@ struct ContentView: View {
             Tab("Sponsors", systemImage: "person.3", value: .sponsors, content: SponsorsView.init)
         }
         .task {
-            if selectedTab == .news {
-                controlDate = .now
-            }
-
             await fetch()
         }
-        .onChange(of: selectedTab) {
-            if selectedTab == .news {
+        .onChange(of: selectedTab) { oldTab, newTab in
+            if oldTab == .news, newTab != .news {
                 controlDate = .now
             }
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
                 Task { await fetch() }
+            } else if selectedTab == .news {
+                controlDate = .now
             }
         }
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NewsView: View {
-
+    @AppStorage("controlDate") var controlDate = Date.distantPast
     let newsItems: [NewsItem]
     
     var body: some View {
@@ -48,6 +48,7 @@ struct NewsView: View {
                             }
                         }
                     }
+                    .listRowBackground(controlDate >= item.newsDate ? nil : Color.purple.opacity(0.2))
                 }
                 .navigationTitle("Latest News…")
             }
@@ -57,3 +58,11 @@ struct NewsView: View {
     }
 }
 
+#Preview("Light") {
+    NewsView(newsItems: [.example, .example2])
+}
+
+#Preview("Dark") {
+    NewsView(newsItems: [.example, .example2])
+        .preferredColorScheme(.dark)
+}

@@ -23,7 +23,7 @@ struct DrinksView: View {
 
     @State private var showDeleteRating = false
     @State private var deletedRatedDrink = ""
-    @State private var deletedRatedName: LocalizedStringResource = "this item"
+    @State private var deletedRatedName = "this item"
 
     @Query var ratedDrinks: [RatedDrink]
 
@@ -91,7 +91,7 @@ struct DrinksView: View {
                                             }
                                             .background(.cyan.gradient, in: .capsule)
                                             .onLongPressGesture {
-                                                deletedRatedName = item.displayName
+                                                deletedRatedName = item.name
                                                 deletedRatedDrink = ratedDrink.id
                                                 deleteRatingsTip.invalidate(reason: .actionPerformed)
                                                 showDeleteRating.toggle()

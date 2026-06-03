@@ -19,5 +19,14 @@ struct NewsItem: Codable, Identifiable, Comparable {
         lhs.newsDate > rhs.newsDate
     }
 
-    static let example = NewsItem(newsDate: .now, description: "", image: "")
+    static let example = NewsItem(
+        newsDate: .now,
+        description: "This year Saturday theme is:-\n **Down on the Farm**.",
+        image:  "farmerBully.png"
+    )
+
+    static let example2 = NewsItem(
+        newsDate: .now,
+        description: "[Camping registration form now available to book your camping.](https://docs.google.com/forms/d/e/1FAIpQLSczKZgcVQyzllXyRiDzlN2Y7n29PqDDNf6sczvFDjHjnVLKVg/viewform?pli=1)",
+    )
 }
