@@ -16,9 +16,11 @@ nonisolated struct Food: Codable {
 
         var displayDetail: LocalizedStringResource { "\(detail)" }
         var id: UUID { UUID() }
-      }
+    }
 
-      var sponsor: String
-      var sponsorTel: String?
-      var items: [Item]
+    var sponsor: String
+    var sponsorTel: String?
+    var items: [Item]
+
+    var displaySponsor: LocalizedStringResource { "\(sponsor)" }
 }

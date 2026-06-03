@@ -31,8 +31,8 @@ struct TicketView: View {
                                 .padding(.horizontal)
                         }
 
-
                         Divider()
+                        
                         ForEach(ticket.prices) { price in
                             VStack(alignment: .leading) {
                                 HStack {

@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct FoodView: View {
-//    let food = Bundle.main.decode(Food.self, from: "Food.json")
     @State private var food: Food?
     @State private var loadingError = false
-
 
     var body: some View {
         Group {
@@ -19,7 +17,7 @@ struct FoodView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            Text("Sponsor by: **\(food.sponsor)**")
+                            Text("Sponsor by: \(food.displaySponsor)")
                                 .font(.title3)
                             if let phone = food.sponsorTel {
                                 Link(phone, destination: URL(string: "tel:\(phone.formatted)")!)
