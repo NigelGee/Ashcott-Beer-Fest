@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct EntertainmentView: View {
-//    let entertainment = Bundle.main.decode(Entertainment.self, from: "Entertainment.json", dateDecodingStrategy: .formatted(.dateTime))
     @State private var entertainment: Entertainment?
     @State private var loadingError = false
 

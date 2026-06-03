@@ -24,7 +24,6 @@ struct BeerItemTitleView: View {
                         .accessibilityLabel("\(award) place")
                 }
 
-
                 if let abv = item.abv {
                     Spacer()
                     let newABV = abv / 100
@@ -75,7 +74,6 @@ struct BeerItemTitleView: View {
         default: .clear
         }
     }
-
 }
 
 #Preview("Light") {

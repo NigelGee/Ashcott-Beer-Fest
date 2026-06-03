@@ -12,7 +12,6 @@ nonisolated struct Entertainment: Codable {
         struct Band: Codable, Identifiable {
             var name: String
             var detail: String?
-            var time: String?
             var startTime: Date?
             var endTime: Date?
 
