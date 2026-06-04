@@ -9,6 +9,7 @@ import SwiftData
 import SwiftUI
 import TipKit
 
+/// A view that show 'Drinks' information
 struct DrinksView: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.scenePhase) var scenePhase
@@ -47,7 +48,7 @@ struct DrinksView: View {
 
                             HStack {
                                 Spacer()
-
+                                // A sort menu to display drink in different order
                                 Menu("Sorted by: \(sortBy.rawValue)") {
                                     Picker("Sort", selection: $sortBy) {
                                         ForEach(SortBy.allCases, id: \.self) { t in
@@ -67,12 +68,13 @@ struct DrinksView: View {
                                     .bold()
                                     .padding(.bottom, 5)
 
-                                ForEach(sortedItems(category: category)) { item in
+                                ForEach(sortedItems(by: category)) { item in
 
                                     BeerItemTitleView(item: item)
 
                                     BeerItemDetailView(item: item)
 
+                                    // If a drink item can be rated this will show either the a button to rate or the rating of the drink item
                                     if item.canRate {
                                         if let ratedDrink = ratedDrinks.first(where: { $0.id == item.id } ) {
                                             HStack {
@@ -117,9 +119,11 @@ struct DrinksView: View {
                             }
 
                             VStack(alignment: .leading) {
+                                // A link to previous drink on Ashcott Beer fest site
                                 Text("[View previous years beers list](https://www.ashcottbeerfest.org/page8.html)")
                                     .padding(.bottom)
 
+                                // A button to reset all drink item ratings
                                 Button {
                                     showResetAlert.toggle()
                                 } label: {
@@ -211,13 +215,9 @@ struct DrinksView: View {
         }
     }
 
-    func deleteRatings() {
-        for ratedDrink in ratedDrinks {
-            modelContext.delete(ratedDrink)
-        }
-        try? modelContext.save()
-    }
-
+    /// A method to determine the color of ratings symbols
+    /// - Parameter symbol: the symbol user selected
+    /// - Returns: A color for the symbol
     func symbolColor(for symbol: String) -> Color {
         switch symbol {
         case "star": .purple
@@ -229,13 +229,24 @@ struct DrinksView: View {
         }
     }
 
+    /// A method delete all ratings
+    func deleteRatings() {
+        for ratedDrink in ratedDrinks {
+            modelContext.delete(ratedDrink)
+        }
+        try? modelContext.save()
+    }
+    
+    /// A method to delete a single rating
+    /// - Parameter ratedDrinkID: The rating id to be deleted
     func deleteRating(for ratedDrinkID: String) {
         for ratedDrink in ratedDrinks where ratedDrink.id == ratedDrinkID {
             modelContext.delete(ratedDrink)
             try? modelContext.save()
         }
     }
-
+    
+    /// A method to delete all old ratings to kept database as small as possible
     func purgeRatedDrinks() {
         for ratedDrink in ratedDrinks where ratedDrink.createdOn < .now.add(year: -1) {
             modelContext.delete(ratedDrink)
@@ -244,7 +255,10 @@ struct DrinksView: View {
         try? modelContext.save()
     }
 
-    func sortedItems(category: Drinks.Category) -> [Drinks.Category.Item] {
+    /// A method to sort drink items
+    /// - Parameter category: a category of drink items
+    /// - Returns: Sort by the chosen type.
+    func sortedItems(by category: Drinks.Category) -> [Drinks.Category.Item] {
         switch sortBy {
         case .barrel:
             category.items.sorted()

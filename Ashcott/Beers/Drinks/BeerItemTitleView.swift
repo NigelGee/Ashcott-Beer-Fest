@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view that show the main text title and ABV of a drink item
 struct BeerItemTitleView: View {
     let item: Drinks.Category.Item
 
@@ -65,7 +66,10 @@ struct BeerItemTitleView: View {
         .font(.title3)
         .bold()
     }
-
+    
+    /// A method that detrimes the background for an `award`
+    /// - Parameter award: This ca be only "1st", "2nd" or "3rd"
+    /// - Returns: A color for the background of award.
     func awardColor(for award: String) -> Color {
         switch award {
         case "1st": .orange

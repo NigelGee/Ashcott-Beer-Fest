@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A struct that hold the elements of the Music bands and Entertainments
 nonisolated struct Entertainment: Codable {
     struct Music: Codable, Identifiable {
         struct Band: Codable, Identifiable {
@@ -27,6 +28,8 @@ nonisolated struct Entertainment: Codable {
     }
 
     private var description: String
+
+    /// A property the will display the title and year of band list
     var bandTitle: String
     var music: [Music]
     var sponsor: String

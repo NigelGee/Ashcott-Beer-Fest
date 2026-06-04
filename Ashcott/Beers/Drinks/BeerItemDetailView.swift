@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A view that show the detaiL of a drink item
 struct BeerItemDetailView: View {
     let item: Drinks.Category.Item
 
@@ -18,7 +19,6 @@ struct BeerItemDetailView: View {
         }
 
         Text(item.displayDetail)
-
 
         if item.sponsor != nil {
             HStack(spacing: 0) {
