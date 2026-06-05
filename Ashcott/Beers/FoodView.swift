@@ -82,7 +82,10 @@ struct FoodView: View {
             print("Failed to fetch data!")
         }
     }
-
+    
+    /// A method to assist the type of food in Voice Over
+    /// - Parameter type: A type
+    /// - Returns: A full text of the the type
     func typeAccessibilityLabel(for type: String) -> String {
         switch type {
         case "G": "Gluten Free"
