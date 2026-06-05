@@ -36,7 +36,7 @@ struct EntertainmentView: View {
                                     .bold()
                                     .padding(.bottom, 5)
                                     .underline()
-                                ForEach(music.band) { band in
+                                ForEach(music.bands) { band in
                                     VStack(alignment: .leading) {
                                         HStack(spacing: 0) {
                                             if let startTime = band.startTime, let endTime = band.endTime {
@@ -84,7 +84,12 @@ struct EntertainmentView: View {
             }
         }
     }
-
+    
+    /// A method that determine if the band is current playing
+    /// - Parameters:
+    ///   - start: Start time of band
+    ///   - end: End time of band
+    /// - Returns: A color of red to indicate the current band
     func currentBand(start: Date, end: Date) -> Color {
         let range = start...end
         if range.contains(.now) {
