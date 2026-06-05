@@ -17,12 +17,12 @@ nonisolated struct Camping: Codable {
     /// A property that is the main text of ``CampView``
     private var bodyText: String
     
-    /// A property that holds ``welcomeText`` of the drink item
+    /// A property that holds ``welcomeText`` of the ``Camping``
     ///
     /// - Note: This converts text to display as markdown
     var displayWelcomeText: LocalizedStringResource { "\(welcomeText)" }
 
-    /// A property that holds ``bodyText`` of the drink item
+    /// A property that holds ``bodyText`` of the ``Camping``
     ///
     /// - Note: This converts text to display as markdown
     var displayBodyText: LocalizedStringResource { "\(bodyText)"}
