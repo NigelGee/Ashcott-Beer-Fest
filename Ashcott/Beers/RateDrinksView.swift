@@ -18,7 +18,8 @@ struct RateDrinksView: View {
     let drink: Drinks.Category.Item
 
     @State private var currentRating = 1
-
+    
+    /// A computed property that return the color of a selected symbol
     var symbolColor: Color {
         switch symbol {
         case "star": .purple
@@ -49,7 +50,6 @@ struct RateDrinksView: View {
                 } label: {
                     Image(systemName: symbol)
                 }
-
             }
 
             Text("\(drink.id.dropFirst(2)) - \(drink.name)")
@@ -94,7 +94,8 @@ struct RateDrinksView: View {
         }
         .padding(.horizontal)
     }
-
+    
+    /// A method that save the ratings to SwiftData
     func confirm() {
         let ratedDrink = RatedDrink(id: drink.id, rate: currentRating, total: rateTotal, symbol: symbol)
         modelContext.insert(ratedDrink)
