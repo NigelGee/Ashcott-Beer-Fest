@@ -12,6 +12,7 @@ struct CampView: View {
     @State private var loadingError = false
 
     @State var showLocation = false
+    
     var body: some View {
         Group {
             if let camp {

@@ -50,6 +50,11 @@ struct MapView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     MapView(loc: .example)
+}
+
+#Preview("Dark") {
+    MapView(loc: .example)
+        .preferredColorScheme(.dark)
 }
