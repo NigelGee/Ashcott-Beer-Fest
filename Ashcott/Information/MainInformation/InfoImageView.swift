@@ -30,6 +30,11 @@ struct InfoImageView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     InfoImageView(info: .example)
+}
+
+#Preview("Dark") {
+    InfoImageView(info: .example)
+        .preferredColorScheme(.dark)
 }

@@ -87,7 +87,7 @@ nonisolated struct Information: Codable {
 
     static let example = Information(
         title: "Welcome\n- As seen on TV! -",
-        image: "header",
+        image: "header.png",
         startDate: .now,
         endDate: .now,
         headerText: "The Ashcott Beer Fest is an annual event held in the village of Ashcott in Somerset.  The weekend of fine ales and entertainment is intended for both the beer expert and the family to enjoy.",

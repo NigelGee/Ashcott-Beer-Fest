@@ -37,6 +37,12 @@ struct NewsImageView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     NewsImageView(item: .example)
 }
+
+#Preview("Dark") {
+    NewsImageView(item: .example)
+        .preferredColorScheme(.dark)
+}
+

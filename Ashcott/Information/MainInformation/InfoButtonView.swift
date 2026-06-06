@@ -39,6 +39,13 @@ struct InfoButtonView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     InfoButtonView(info: .example, showCamping: .constant(false))
+        .padding(.horizontal)
+}
+
+#Preview("Dark") {
+    InfoButtonView(info: .example, showCamping: .constant(false))
+        .padding(.horizontal)
+        .preferredColorScheme(.dark)
 }

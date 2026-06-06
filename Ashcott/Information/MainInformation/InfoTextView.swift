@@ -32,6 +32,13 @@ struct InfoTextView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     InfoTextView(info: .example)
+        .padding(.horizontal)
+}
+
+#Preview("Dark") {
+    InfoTextView(info: .example)
+        .padding(.horizontal)
+        .preferredColorScheme(.dark)
 }

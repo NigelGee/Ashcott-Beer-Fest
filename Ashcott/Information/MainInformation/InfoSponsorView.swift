@@ -32,6 +32,13 @@ struct InfoSponsorView: View {
     }
 }
 
-#Preview {
+#Preview("Light") {
     InfoSponsorView(info: .example)
+        .padding(.horizontal)
+}
+
+#Preview("Dark") {
+    InfoSponsorView(info: .example)
+        .padding(.horizontal)
+        .preferredColorScheme(.dark)
 }
