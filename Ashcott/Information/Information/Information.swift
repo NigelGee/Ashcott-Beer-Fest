@@ -9,25 +9,80 @@ import Foundation
 import MapKit
 
 nonisolated struct Information: Codable {
-    var title: String
-    var image: String
-    var startDate: Date
-    var endDate: Date
-    var headerText: String
-    var bodyText: String
-    var ticketText: String
-    var helpTitle: String
-    var volunteersTitle: String
-    var volunteersText: String
-    var sponsorTitle: String
-    var sponsorText: String
 
+    /// A property for the main title
+    var title: String
+
+    /// A property for the header image
+    var image: String
+
+    /// A property for the start of festival
+    ///
+    /// - Note: The raw data format is "dd/MM/yyyy
+    var startDate: Date
+
+    /// A property for the end date of festival
+    ///
+    /// - Note: The format is "dd/MM/yyyy
+    var endDate: Date
+
+    /// A property for the header text
+    var headerText: String
+
+    /// A property for the main body of text
+    var bodyText: String
+
+    /// A property for the text on ticket Button
+    var ticketText: String
+
+    /// A property for the text on GroupBox for sponsor/volunteer
+    var helpTitle: String
+
+    /// A property for the text title on GroupBox for volunteer
+    var volunteersTitle: String
+
+    /// A property for the body text for volunteer
+    var volunteersText: String
+
+    /// A property for the text title on GroupBox for sponsors
+    var sponsorTitle: String
+
+    /// A property for the body text for sponsors
+    var sponsorText: String
+    
+    /// A property that holds ``title`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayTitle: LocalizedStringResource { "\(title)"}
+
+    /// A property that holds ``headerText`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayHeaderText: LocalizedStringResource { "\(headerText)"}
+
+    /// A property that holds ``bodyText`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayBodyText: LocalizedStringResource { "\(bodyText)" }
+
+    /// A property that holds ``ticketText`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayTicketText: LocalizedStringResource { "\(ticketText)"}
+
+    /// A property that holds ``helpTitle`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayHelpTitle: LocalizedStringResource { "\(helpTitle)"}
+
+    /// A property that holds ``volunteersText`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayVolunteersText: LocalizedStringResource { "\(volunteersText)"}
+
+    /// A property that holds ``sponsorText`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var displaySponsorText: LocalizedStringResource { "\(sponsorText)"}
 
     static let example = Information(
