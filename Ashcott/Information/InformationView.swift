@@ -49,15 +49,7 @@ struct InformationView: View {
                                 Text("to")
                                 Text(info.endDate, style: .date)
                             }
-                            .font(.title3)
-                            .bold()
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical)
-                            .background(.purple.gradient)
-                            .clipShape(.capsule)
-                            .padding(.bottom)
-                            .foregroundStyle(.white)
-                            .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
+                            .purpleCapsuleModifier
 
                             Text(info.displayHeaderText)
                                 .padding(.bottom)

@@ -50,14 +50,14 @@ struct DrinksView: View {
                                 Spacer()
                                 // A sort menu to display drink in different order
                                 Menu("Sorted by: \(sortBy.rawValue)") {
-                                    Picker("Sort", selection: $sortBy) {
-                                        ForEach(SortBy.allCases, id: \.self) { t in
-                                            Text(t.rawValue)
-
+                                    Picker("Choose", selection: $sortBy) {
+                                        ForEach(SortBy.allCases) {
+                                            Text($0.rawValue)
                                         }
                                     }
                                 }
                             }
+                            .padding(.top, 5)
                         }
                         .padding([.horizontal, .top])
 

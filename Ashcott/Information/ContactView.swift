@@ -38,7 +38,7 @@ struct ContactView: View {
                                 .foregroundStyle(.black)
                                 .padding(.vertical, 5)
                                 .frame(maxWidth: .infinity)
-                                .background(.mint)
+                                .background(.mint.gradient)
                                 .clipShape(.capsule)
                             }
                             .buttonStyle(.plain)

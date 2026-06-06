@@ -7,10 +7,12 @@
 
 import Foundation
 
-enum SortBy: String, CaseIterable {
-    case barrel = "Barrel Number"
-    case ratings = "Highest Rating"
-    case alphabetical = "Alphabetical"
-    case highestABV = "Highest ABV"
-    case lowestABV = "Lowest ABV"
+enum SortBy: String, CaseIterable, Identifiable {
+    case barrel =       "Barrel Number "
+    case ratings =      "Highest Rating"
+    case alphabetical = "Alphabetical  "
+    case highestABV =   "Highest ABV   "
+    case lowestABV =    "Lowest ABV    "
+
+    var id: Self { self }
 }
