@@ -44,6 +44,7 @@ struct CampView: View {
                     }
                     .padding(.horizontal)
                 }
+                .scrollIndicators(.hidden)
                 .scrollBounceBehavior(.basedOnSize)
             } else {
                 LoadingView()

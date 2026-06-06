@@ -88,7 +88,6 @@ struct SponsorsView: View {
                             }
                         }
                     }
-                    .scrollIndicators(.hidden)
                     .scrollBounceBehavior(.basedOnSize)
                 } else {
                     LoadingView()

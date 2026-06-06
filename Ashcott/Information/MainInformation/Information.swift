@@ -99,4 +99,19 @@ nonisolated struct Information: Codable {
         sponsorTitle: "Be our hero! - Sponsor.",
         sponsorText: "Help us by sponsoring a barrel of beer, cider or the sponsor the music! Many of the local firms support us and without this we would be unlikely to make any money for our charities."
     )
+
+    static let imageExample = Information(
+        title: "",
+        image: "downOnTheFarm.png",
+        startDate: .now,
+        endDate: .now,
+        headerText: "",
+        bodyText: "",
+        ticketText: "",
+        helpTitle: "",
+        volunteersTitle: "",
+        volunteersText: "",
+        sponsorTitle: "",
+        sponsorText: ""
+    )
 }

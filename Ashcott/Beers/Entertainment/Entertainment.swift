@@ -20,7 +20,7 @@ nonisolated struct Entertainment: Codable {
 
             /// A property that will show start time of band/entrainment if provide
             ///
-            /// - Note: The raw data format "dd/MM/yyyy HH:mm
+            /// - Note: The raw data format "dd/MM/yyyy HH:mm"
             var startTime: Date?
 
             /// A property that will show end time of band/entrainment if provide

@@ -31,7 +31,10 @@ struct InfoImageView: View {
 }
 
 #Preview("Light") {
-    InfoImageView(info: .example)
+    VStack {
+        InfoImageView(info: .example)
+        InfoImageView(info: .imageExample)
+    }
 }
 
 #Preview("Dark") {
