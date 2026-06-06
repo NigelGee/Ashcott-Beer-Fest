@@ -24,29 +24,8 @@ struct NewsView: View {
                             Text(item.displayDescription)
                         }
 
-                        if let image = item.image {
-                            AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(image)")) { phase in
-                                if let image = phase.image {
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 200)
-                                        .clipShape(.rect(cornerRadius: 10))
-                                } else if phase.error != nil {
-                                    VStack(alignment: .leading) {
-                                        Image(systemName: "photo")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(height: 200)
-                                            .clipShape(.rect(cornerRadius: 10))
-                                        Text("Unable to Load Photo")
-                                    }
-                                } else {
-                                    ProgressView()
-                                        .frame(height: 200)
-                                }
-                            }
-                        }
+                        NewsImageView(item: item)
+
                     }
                     .listRowBackground(controlDate >= item.newsDate ? nil : Color.purple.opacity(0.2))
                 }
