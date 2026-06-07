@@ -21,50 +21,32 @@ struct TicketView: View {
                                 Text(ticket.closedText)
                                     .foregroundStyle(.red)
                                     .bold()
-                                    .padding()
+                                    .padding(.bottom)
                             } else {
                                 Text("Tickets will be available on-line until \(Text(ticket.cutoffDate.formatted(date: .complete, time: .shortened)).bold()).")
-                                    .padding([.horizontal, .bottom])
+                                    .padding(.bottom)
                             }
 
                             Text(ticket.descriptionDisplay)
-                                .padding(.horizontal)
                         }
 
                         Divider()
-                        
+
                         ForEach(ticket.prices) { price in
                             VStack(alignment: .leading) {
                                 HStack {
                                     VStack(alignment: .leading) {
                                         HStack {
-                                            if let image = price.image {
-                                                AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(image)")) { phase in
-                                                    if let image = phase.image {
-                                                        image
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 60, height: 60)
-                                                            .clipShape(.rect(cornerRadius: 10))
-                                                    } else if phase.error != nil {
-                                                        Image(systemName: "photo")
-                                                            .resizable()
-                                                            .scaledToFit()
-                                                            .frame(width: 60, height: 60)
-                                                            .clipShape(.rect(cornerRadius: 10))
-                                                    } else {
-                                                        ProgressView()
-                                                            .frame(width: 60, height: 60)
-                                                    }
-                                                }
-                                            }
+                                            TicketImageView(price: price)
+
                                             Text(price.type)
-                                                .font(.title2)
+                                                .font(.title3)
                                                 .bold()
                                         }
-                                        Text(price.displayDescription)
 
+                                        Text(price.displayDescription)
                                     }
+
                                     if let url = price.url {
                                         Spacer()
                                         Link(destination: url) {
@@ -82,12 +64,14 @@ struct TicketView: View {
                                         .disabled(ticket.cutoffDate < .now)
                                     }
                                 }
+
                                 Divider()
                             }
                             .padding(.horizontal)
                         }
 
                     }
+                    .padding(.horizontal)
                 } else {
                    LoadingView()
                 }
