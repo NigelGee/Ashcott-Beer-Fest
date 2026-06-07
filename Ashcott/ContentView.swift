@@ -28,7 +28,7 @@ struct ContentView: View {
             .badge(badgeNumber)
             Tab("Beers", systemImage: "mug", value: .beers, content: DrinksView.init)
             Tab("Tickets", systemImage: "ticket", value: .ticket, content: TicketView.init)
-            Tab("Sponsors", systemImage: "person.3", value: .sponsors, content: SponsorsView.init)
+            Tab("Sponsors", systemImage: "person.3", value: .sponsors, content: SponsorView.init)
         }
         .task { await fetch() }
         .onChange(of: selectedTab) { oldTab, newTab in
