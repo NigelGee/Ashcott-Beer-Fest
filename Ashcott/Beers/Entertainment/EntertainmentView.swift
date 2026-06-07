@@ -29,13 +29,9 @@ struct EntertainmentView: View {
                         }
 
                         Divider()
+
                         ForEach(entertainment.music) { music in
-                            VStack(alignment: .leading) {
-                                Text(music.day)
-                                    .font(.title3)
-                                    .bold()
-                                    .padding(.bottom, 5)
-                                    .underline()
+                            Section {
                                 ForEach(music.bands) { band in
                                     VStack(alignment: .leading) {
                                         HStack(spacing: 0) {
@@ -64,6 +60,12 @@ struct EntertainmentView: View {
                                     .padding(.bottom, 5)
                                 }
                                 Divider()
+                            }  header: {
+                                Text(music.day)
+                                    .font(.title3)
+                                    .bold()
+                                    .padding(.bottom, 5)
+                                    .underline()
                             }
                         }
                     }

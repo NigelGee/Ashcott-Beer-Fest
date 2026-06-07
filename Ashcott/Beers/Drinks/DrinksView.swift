@@ -63,58 +63,61 @@ struct DrinksView: View {
 
                         VStack(alignment: .leading) {
                             ForEach(drinks.categories) { category in
-                                Text(category.title)
-                                    .font(.title)
-                                    .bold()
-                                    .padding(.bottom, 5)
+                                Section {
+                                    ForEach(sortedItems(by: category)) { item in
 
-                                ForEach(sortedItems(by: category)) { item in
+                                        BeerItemTitleView(item: item)
 
-                                    BeerItemTitleView(item: item)
+                                        BeerItemDetailView(item: item)
 
-                                    BeerItemDetailView(item: item)
+                                        // If a drink item can be rated this will show either the a button to rate or the rating of the drink item
+                                        if item.canRate {
+                                            if let ratedDrink = ratedDrinks.first(where: { $0.id == item.id } ) {
+                                                HStack {
+                                                    Spacer()
 
-                                    // If a drink item can be rated this will show either the a button to rate or the rating of the drink item
-                                    if item.canRate {
-                                        if let ratedDrink = ratedDrinks.first(where: { $0.id == item.id } ) {
-                                            HStack {
-                                                Spacer()
+                                                    ForEach(0..<ratedDrink.total, id:\.self) { i in
+                                                        Image(systemName: ratedDrink.symbol)
+                                                            .symbolVariant(ratedDrink.rate > i ? .fill : .none)
+                                                            .imageScale(.large)
+                                                            .padding(.vertical, 5)
+                                                            .foregroundStyle(symbolColor(for: ratedDrink.symbol))
+                                                            .dynamicTypeSize(..<DynamicTypeSize.xLarge)
+                                                    }
 
-                                                ForEach(0..<ratedDrink.total, id:\.self) { i in
-                                                    Image(systemName: ratedDrink.symbol)
-                                                        .symbolVariant(ratedDrink.rate > i ? .fill : .none)
-                                                        .imageScale(.large)
-                                                        .padding(.vertical, 5)
-                                                        .foregroundStyle(symbolColor(for: ratedDrink.symbol))
-                                                        .dynamicTypeSize(..<DynamicTypeSize.xLarge)
+                                                    Spacer()
                                                 }
-
-                                                Spacer()
+                                                .background(.cyan.gradient, in: .capsule)
+                                                .onLongPressGesture {
+                                                    deletedRatedName = item.name
+                                                    deletedRatedDrink = ratedDrink.id
+                                                    deleteRatingsTip.invalidate(reason: .actionPerformed)
+                                                    showDeleteRating.toggle()
+                                                }
+                                                .accessibilityElement()
+                                                .accessibilityLabel("\(ratedDrink.rate) out of \(ratedDrink.total)")
+                                                .accessibilityHint("Long press to delete ratings")
+                                                .popoverTip(deleteRatingsTip, arrowEdge: .top)
+                                            } else {
+                                                Button {
+                                                    rateDrinkItem = item
+                                                } label: {
+                                                    Text("Not Rated")
+                                                        .frame(maxWidth: .infinity, alignment: .center)
+                                                }
+                                                .buttonStyle(.bordered)
                                             }
-                                            .background(.cyan.gradient, in: .capsule)
-                                            .onLongPressGesture {
-                                                deletedRatedName = item.name
-                                                deletedRatedDrink = ratedDrink.id
-                                                deleteRatingsTip.invalidate(reason: .actionPerformed)
-                                                showDeleteRating.toggle()
-                                            }
-                                            .accessibilityElement()
-                                            .accessibilityLabel("\(ratedDrink.rate) out of \(ratedDrink.total)")
-                                            .accessibilityHint("Long press to delete ratings")
-                                            .popoverTip(deleteRatingsTip, arrowEdge: .top)
-                                        } else {
-                                            Button {
-                                                rateDrinkItem = item
-                                            } label: {
-                                                Text("Not Rated")
-                                                    .frame(maxWidth: .infinity, alignment: .center)
-                                            }
-                                            .buttonStyle(.bordered)
                                         }
-                                    }
 
-                                    Divider()
-                                        .padding(.top)
+                                        Divider()
+                                            .padding(.top)
+
+                                    }
+                                } header: {
+                                    Text(category.title)
+                                        .font(.title)
+                                        .bold()
+                                        .padding(.bottom, 5)
                                 }
                             }
 
