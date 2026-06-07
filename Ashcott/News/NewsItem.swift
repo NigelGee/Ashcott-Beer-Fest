@@ -8,11 +8,23 @@
 import Foundation
 
 struct NewsItem: Codable, Identifiable, Comparable {
+
+    /// A property that show the date of a news item
+    ///
+    /// - Note: The raw data format is "dd/MM/yyyy"
     var newsDate: Date
+    
+    /// A property that show the detail description of news
     private var description: String
+
+    /// A property that will show an image of a news item if povided
     var image: String?
 
     var id: UUID { UUID() }
+    
+    /// A property that holds ``description`` of the news item
+    ///
+    /// - Note: This converts text to display as markdown
     var displayDescription: LocalizedStringResource { "\(description)" }
 
     static func <(lhs: NewsItem, rhs: NewsItem) -> Bool {

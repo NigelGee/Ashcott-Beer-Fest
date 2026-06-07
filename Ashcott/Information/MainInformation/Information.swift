@@ -18,7 +18,7 @@ nonisolated struct Information: Codable {
 
     /// A property for the start of festival
     ///
-    /// - Note: The raw data format is "dd/MM/yyyy
+    /// - Note: The raw data format is "dd/MM/yyyy"
     var startDate: Date
 
     /// A property for the end date of festival
