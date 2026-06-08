@@ -35,8 +35,6 @@ nonisolated struct Ticket: Codable {
 
     var descriptionDisplay: LocalizedStringResource { "\(description)" }
 
-    static let loading = Ticket(cutoffDate: .now, description: "Loading", prices: [], closedText: "")
-
     static let example = Ticket(
         cutoffDate: .distantFuture,
         description: "All adult tickets include this year’s glass.\n\n[Camping must be booked in advance of the event here.](https://docs.google.com/forms/d/e/1FAIpQLSczKZgcVQyzllXyRiDzlN2Y7n29PqDDNf6sczvFDjHjnVLKVg/viewform)\n\n**Please note:** If you get a *‘On the Farm’* glass (this year’s glass) on Friday night and bring it back with you on Saturday you’ll get a beer token instead of another glass.",
