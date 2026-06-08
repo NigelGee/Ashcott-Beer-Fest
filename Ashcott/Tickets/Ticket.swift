@@ -10,13 +10,27 @@ import Foundation
 
 nonisolated struct Ticket: Codable {
     struct Price: Codable, Identifiable {
-        var type: String
-        private var description: String
-        var amount: Double
-        var url: URL?
-        var image: String?
 
+        /// A property the shows the type title for a ticket price
+        var type: String
+
+        /// A property that shows a description of the ticket price
+        private var description: String
+
+        /// A property that shows the cost of the ticket
+        var amount: Double
+
+        /// A property that shows the link to the "Sum Up" to able to buy the ticket, if provided
+        var url: URL?
+
+        /// A property that a image for ticket price, if provided
+        var image: String?
+        
+        /// A property that holds ``description`` of the drink item
+        ///
+        /// - Note: This converts text to display as markdown
         var displayDescription: LocalizedStringResource { "\(description)" }
+        
         var id: UUID { UUID() }
 
         static let example = Price(
@@ -28,11 +42,23 @@ nonisolated struct Ticket: Codable {
         )
     }
     
+    /// A property for the cut off date to able buy advance tickets
+    ///
+    /// - Note: The raw data format is "dd/MM/yyyy HH;mm"
     var cutoffDate: Date
-    private var description: String
-    var prices: [Price]
-    var closedText: String
 
+    /// A property that shows a header about tickets
+    private var description: String
+
+    /// An array of elements of ticket price
+    var prices: [Price]
+
+    /// A property that will show the text when advance ticket are no long available
+    var closedText: String
+    
+    /// A property that holds ``description`` of the drink item
+    ///
+    /// - Note: This converts text to display as markdown
     var descriptionDisplay: LocalizedStringResource { "\(description)" }
 
     static let example = Ticket(
