@@ -8,6 +8,8 @@
 import SwiftUI
 
 extension View {
+
+    /// A computed property that return a purple capsule color for the date of festival
     var purpleCapsuleModifier: some View {
         self
             .font(.title3)

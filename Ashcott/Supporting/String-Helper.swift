@@ -8,12 +8,9 @@
 import Foundation
 
 extension String {
+
+    /// A computed property that removes a space for telephone number
     var formatted: String {
         self.replacingOccurrences(of: " ", with: "")
-    }
-
-    func deletingPrefix(_ prefix: String) -> String {
-            guard self.hasPrefix(prefix) else { return self }
-            return String(self.dropFirst(prefix.count))
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// An enum for the selected tab
 enum Tabs: String {
     case info, ticket, beers, sponsors, news
 }

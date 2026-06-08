@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// An enum that determines the sort order of drinks
 enum SortBy: String, CaseIterable, Identifiable {
     case barrel =       "Barrel Number "
     case ratings =      "Highest Rating"

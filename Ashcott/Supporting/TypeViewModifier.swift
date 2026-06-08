@@ -28,6 +28,12 @@ struct TypeViewModifier: ViewModifier {
 }
 
 extension View {
+
+    /// A method that changes the background color
+    ///
+    /// For use in types of food
+    /// - Parameter type: either "G", "V" or "Ve"
+    /// - Returns: The color represented by the type
     func bgColor(for type: String) -> some View {
         modifier(TypeViewModifier(type: type))
     }
