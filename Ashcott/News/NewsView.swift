@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct NewsView: View {
+    @Environment(\.accessibilityDifferentiateWithoutColor) var withoutColor
     @AppStorage("controlDate") var controlDate = Date.distantPast
     let newsItems: [NewsItem]
     
@@ -17,17 +18,32 @@ struct NewsView: View {
                 List(newsItems.sorted()) { item in
                     VStack(alignment: .leading) {
                         VStack(alignment: .leading) {
-                            Text(item.newsDate, style: .date)
-                                .font(.title2)
-                                .bold()
+                            if withoutColor, controlDate <= item.newsDate {
+                                HStack {
+                                    Image(systemName: "rhombus.fill")
+                                    
+                                    Text(item.newsDate, style: .date)
+                                        .font(.title2)
+                                        .bold()
+                                }
 
-                            Text(item.displayDescription)
+                                Text(item.displayDescription)
+                            } else {
+                                Text(item.newsDate, style: .date)
+                                    .font(.title2)
+                                    .bold()
+
+                                Text(item.displayDescription)
+                            }
                         }
 
                         NewsImageView(item: item)
 
                     }
-                    .listRowBackground(controlDate >= item.newsDate ? nil : Color.purple.opacity(0.2))
+                    .listRowBackground(
+                        controlDate >= item.newsDate ? nil
+                        : withoutColor ? nil : Color.purple.opacity(0.2)
+                    )
                 }
                 .navigationTitle("Latest News…")
             }
