@@ -40,10 +40,7 @@ struct NewsView: View {
                         NewsImageView(item: item)
 
                     }
-                    .listRowBackground(
-                        controlDate >= item.newsDate ? nil
-                        : withoutColor ? nil : Color.purple.opacity(0.2)
-                    )
+                    .listRowBackground(bgPurpleColor(controlDate >= item.newsDate , or: withoutColor))
                 }
                 .navigationTitle("Latest News…")
             }

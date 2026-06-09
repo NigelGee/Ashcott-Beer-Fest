@@ -22,4 +22,18 @@ extension View {
             .foregroundStyle(.white)
             .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
     }
+
+
+    /// A purple color for news list rows
+    /// - Parameters:
+    ///   - date: A bool for news date and control date
+    ///   - withoutColor: Environment accessibilityDifferentiateWithoutColor
+    /// - Returns: Color purple if not true for either parameters
+    func bgPurpleColor(_ date: Bool, or withoutColor: Bool) -> Color? {
+        if date || withoutColor {
+            return nil
+        }
+
+        return Color.purple.opacity(0.2)
+    }
 }
