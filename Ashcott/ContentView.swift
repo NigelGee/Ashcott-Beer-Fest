@@ -31,8 +31,8 @@ struct ContentView: View {
             Tab("Sponsors", systemImage: "person.3", value: .sponsors, content: SponsorView.init)
         }
         .task { await fetch() }
-        .onChange(of: selectedTab) { oldTab, newTab in
-            if oldTab == .news, newTab != .news {
+        .onChange(of: selectedTab) { oldTab, _ in
+            if oldTab == .news {
                 controlDate = .now
             }
         }
