@@ -9,7 +9,7 @@ import Foundation
 
 
 nonisolated struct Ticket: Codable {
-    struct Price: Codable, Identifiable {
+    struct Price: Codable, Identifiable, Comparable {
 
         /// A property the shows the type title for a ticket price
         var type: String
@@ -40,6 +40,18 @@ nonisolated struct Ticket: Codable {
             url: URL(string: "https://ashcott-beer-festival.sumupstore.com/product/adult-friday-eve"),
             image: "farmerBully.png"
         )
+
+        static let example2 = Price(
+            type: "Camping",
+            description: "[Camping must be registered in advance of the event here.](https://docs.google.com/forms/d/e/1FAIpQLSczKZgcVQyzllXyRiDzlN2Y7n29PqDDNf6sczvFDjHjnVLKVg/viewform)",
+            amount: 0,
+            url: URL(string: "https://ashcott-beer-festival.sumupstore.com/product/camping-ticket"),
+            image: "camping.png"
+        )
+
+        static func <(lhs: Price, rhs: Price) -> Bool {
+            lhs.type < rhs.type
+        }
     }
     
     /// A property for the cut off date to able buy advance tickets

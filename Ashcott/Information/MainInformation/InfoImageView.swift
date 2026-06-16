@@ -20,11 +20,11 @@ struct InfoImageView: View {
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 160, height: 160)
                     .clipShape(.rect(cornerRadius: 10))
             } else {
                 ProgressView()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 160, height: 160)
             }
         }
     }
@@ -39,5 +39,6 @@ struct InfoImageView: View {
 
 #Preview("Dark") {
     InfoImageView(info: .example)
+    InfoImageView(info: .imageExample)
         .preferredColorScheme(.dark)
 }
