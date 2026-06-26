@@ -40,6 +40,8 @@ nonisolated struct Drinks: Codable {
             /// A property that holds the sponsor telephone number
             var sponsorTel: String?
 
+            var untappd: String?
+
             /// A property that if `true` will show a rating button or view
             var canRate: Bool
 
@@ -72,6 +74,7 @@ nonisolated struct Drinks: Codable {
                 brewer: "[Badgworth Brewhouse, Somerset](https://badgworthbrewhouse.com)",
                 sponsor: "[Holland & Odam](https://www.hollandandodam.co.uk)",
                 sponsorTel: "01458 841411",
+                untappd: "https://untappd.com/b/badgworth-brewhouse-badgworth-ipa/5416133",
                 canRate: true
             )
         }

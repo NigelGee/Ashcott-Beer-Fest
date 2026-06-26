@@ -34,11 +34,31 @@ struct BeerItemDetailView: View {
         if let phone = item.sponsorTel {
             Link("Telephone: \(phone)", destination: URL(string: "tel:\(phone.formatted)")!)
         }
+
+        if let untappd = item.untappd, let untappdURL = URL(string: untappd) {
+            Link(destination: untappdURL) {
+                HStack(spacing: 2) {
+                    Text("More details on ")
+                    Image(.untappdIcon)
+                        .resizable()
+                        .frame(width: 21, height: 21)
+                        .clipShape(.rect(cornerRadius: 5))
+                    Text("Untappd")
+                }
+            }
+        }
     }
 }
 
-#Preview {
+#Preview("Light") {
     VStack(alignment: .leading) {
         BeerItemDetailView(item: .example)
     }
+}
+
+#Preview("Dark") {
+    VStack(alignment: .leading) {
+        BeerItemDetailView(item: .example)
+    }
+    .preferredColorScheme(.dark)
 }
