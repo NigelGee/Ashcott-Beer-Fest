@@ -39,7 +39,8 @@ nonisolated struct Drinks: Codable {
 
             /// A property that holds the sponsor telephone number
             var sponsorTel: String?
-
+            
+            /// A property that holds the url to drink's Untappd page
             var untappd: String?
 
             /// A property that if `true` will show a rating button or view

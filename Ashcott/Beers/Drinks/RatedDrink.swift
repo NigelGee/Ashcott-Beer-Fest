@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @Model
-class RatedDrink {
+final class RatedDrink {
     /// A property that holds a id of selected drink item
     ///
     /// This is a two digit year and the barrel number eg (2501)

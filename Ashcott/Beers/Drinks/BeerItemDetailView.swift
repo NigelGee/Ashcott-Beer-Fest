@@ -45,6 +45,7 @@ struct BeerItemDetailView: View {
                         .clipShape(.rect(cornerRadius: 5))
                     Text("Untappd")
                 }
+                .foregroundStyle(.orange)
             }
         }
     }
