@@ -29,6 +29,7 @@ struct TicketView: View {
 
                             Text(ticket.descriptionDisplay)
                         }
+                        .padding(.horizontal ,10)
 
                         Divider()
 
