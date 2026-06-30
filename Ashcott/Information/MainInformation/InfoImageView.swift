@@ -12,19 +12,23 @@ struct InfoImageView: View {
 
     var body: some View {
         AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(info.image)")) { phase in
-            if let image = phase.image {
+            switch phase {
+            case .empty:
+                ProgressView()
+                    .frame(width: 160, height: 160)
+            case .success(let image):
                 image
                     .resizable()
                     .scaledToFit()
-            } else if phase.error != nil {
+            case .failure:
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 160, height: 160)
                     .clipShape(.rect(cornerRadius: 10))
-            } else {
-                ProgressView()
-                    .frame(width: 160, height: 160)
+                    .foregroundStyle(.secondary)
+            @unknown default:
+                fatalError("a new image phase")
             }
         }
     }

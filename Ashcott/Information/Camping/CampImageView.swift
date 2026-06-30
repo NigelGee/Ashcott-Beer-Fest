@@ -1,16 +1,17 @@
 //
-//  CharityImageView.swift
+//  CampImageView.swift
 //  Ashcott
 //
-//  Created by Nigel Gee on 07/06/2026.
+//  Created by Nigel Gee on 30/06/2026.
 //
 
 import SwiftUI
 
-struct CharityImageView: View {
-    let charity: CharityDetails.Charity
+struct CampImageView: View {
+    let camp: Camping
+
     var body: some View {
-        AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(charity.image)")) { phase in
+        AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(camp.image)")) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -25,7 +26,6 @@ struct CharityImageView: View {
                     .scaledToFit()
                     .frame(width: 100, height: 100)
                     .clipShape(.rect(cornerRadius: 10))
-                    .foregroundStyle(.secondary)
             @unknown default:
                 fatalError("A new image phase")
             }
@@ -33,11 +33,6 @@ struct CharityImageView: View {
     }
 }
 
-#Preview("Light") {
-    CharityImageView(charity: .example)
-}
-
-#Preview("Dark") {
-    CharityImageView(charity: .example)
-        .preferredColorScheme(.dark)
+#Preview {
+    CampImageView(camp: .example)
 }

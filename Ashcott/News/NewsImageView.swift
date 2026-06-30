@@ -13,24 +13,28 @@ struct NewsImageView: View {
     var body: some View {
         if let image = item.image {
             AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(image)")) { phase in
-                if let image = phase.image {
+                switch phase {
+                case .empty:
+                    ProgressView()
+                        .frame(height: 200)
+                case .success(let image):
                     image
                         .resizable()
                         .scaledToFit()
                         .frame(height: 200)
                         .clipShape(.rect(cornerRadius: 10))
-                } else if phase.error != nil {
+                case .failure:
                     VStack(alignment: .leading) {
                         Image(systemName: "photo")
                             .resizable()
                             .scaledToFit()
                             .frame(height: 200)
                             .clipShape(.rect(cornerRadius: 10))
+                            .foregroundStyle(.secondary)
                         Text("Unable to Load Photo")
                     }
-                } else {
-                    ProgressView()
-                        .frame(height: 200)
+                @unknown default:
+                    fatalError("a new image phase")
                 }
             }
         }

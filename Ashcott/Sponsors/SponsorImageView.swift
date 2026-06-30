@@ -12,20 +12,38 @@ struct SponsorImageView: View {
     
     var body: some View {
         AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(sponsor.image)")) { phase in
-            if let image = phase.image {
+            switch phase {
+            case .empty:
+                ProgressView()
+                    .frame(width: 100, height: 100)
+            case .success(let image):
                 image
                     .resizable()
                     .scaledToFit()
-            } else if phase.error != nil {
+            case .failure:
                 Image(systemName: "photo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
                     .clipShape(.rect(cornerRadius: 10))
-            } else {
-                ProgressView()
-                    .frame(width: 100, height: 100)
+                    .foregroundStyle(.secondary)
+            @unknown default:
+                fatalError("A new image phase")
             }
+//            if let image = phase.image {
+//                image
+//                    .resizable()
+//                    .scaledToFit()
+//            } else if phase.error != nil {
+//                Image(systemName: "photo")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 100, height: 100)
+//                    .clipShape(.rect(cornerRadius: 10))
+//            } else {
+//                ProgressView()
+//                    .frame(width: 100, height: 100)
+//            }
         }
     }
 }

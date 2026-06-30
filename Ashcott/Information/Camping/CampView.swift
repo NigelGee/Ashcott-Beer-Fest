@@ -17,22 +17,8 @@ struct CampView: View {
         Group {
             if let camp {
                 ScrollView {
-                    AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(camp.image)")) { phase in
-                        if let image = phase.image {
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } else if phase.error != nil {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 100, height: 100)
-                                .clipShape(.rect(cornerRadius: 10))
-                        } else {
-                            ProgressView()
-                                .frame(width: 100, height: 100)
-                        }
-                    }
+
+                    CampImageView(camp: camp)
 
                     VStack {
                         Text(camp.displayWelcomeText)
