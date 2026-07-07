@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SponsorView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @State private var charity: CharityDetails?
     @State private var sponsor: Sponsorship?
     @State private var loadingError = false
@@ -21,7 +22,12 @@ struct SponsorView: View {
 
                             Text(sponsor.displayDescription)
 
-                            SponsorImageView(sponsor: sponsor)
+                            if horizontalSizeClass == .compact {
+                                SponsorImageView(sponsor: sponsor)
+                            } else {
+                                SponsorImageView(sponsor: sponsor)
+                                    .frame(maxWidth: 500)
+                            }
 
                             GroupBox(sponsor.yearTitle) {
                                 GroupBox {
@@ -40,7 +46,6 @@ struct SponsorView: View {
                             }
 
                             CharityView(charity: charity)
-                            
                         }
                     }
                     .scrollBounceBehavior(.basedOnSize)

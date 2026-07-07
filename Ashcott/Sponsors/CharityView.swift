@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CharityView: View {
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     let charity: CharityDetails
     
     var body: some View {
@@ -23,9 +24,18 @@ struct CharityView: View {
                                 .accessibilityLabel("\(charity.title) website")
                         }
 
-                        CharityImageView(charity: charity)
+                        if horizontalSizeClass == .compact {
+                            CharityImageView(charity: charity)
 
-                        Text(charity.displayDetail)
+                            Text(charity.displayDetail)
+                        } else {
+                            HStack {
+                                CharityImageView(charity: charity)
+                                    .frame(maxWidth: 270)
+
+                                Text(charity.displayDetail)
+                            }
+                        }
                     }
                 }
             }
