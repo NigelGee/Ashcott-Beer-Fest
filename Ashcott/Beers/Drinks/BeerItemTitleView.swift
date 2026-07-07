@@ -27,10 +27,10 @@ struct BeerItemTitleView: View {
 
                 if let abv = item.abv {
                     Spacer()
-                    let newABV = abv / 100
+                    let newABV = abv
                     HStack(spacing: 0) {
-                        Text(newABV.formatted(.percent))
-                        Text(" abv")
+                        Text(String(format: "%.1f", newABV))
+                        Text("% abv")
                     }
                     .accessibilityElement()
                     .accessibilityLabel("\(newABV.formatted(.percent)) abv")
@@ -53,10 +53,10 @@ struct BeerItemTitleView: View {
 
                 if let abv = item.abv {
                     Spacer()
-                    let newABV = abv / 100
+                    let newABV = abv
                     HStack(spacing: 0) {
-                        Text(newABV.formatted(.percent))
-                        Text(" abv")
+                        Text(String(format: "%.1f", newABV))
+                        Text("% abv")
                     }
                     .accessibilityElement()
                     .accessibilityLabel("\(newABV.formatted(.percent)) abv")
