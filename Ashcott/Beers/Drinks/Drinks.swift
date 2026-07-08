@@ -43,9 +43,10 @@ nonisolated struct Drinks: Codable {
             /// A property that holds the url to drink's Untappd page
             var untappd: String?
 
+            var onSale: Bool
+
             /// A property that if `true` will show a rating button or view
             var canRate: Bool
-
 
             /// A property that holds ``detail`` of the drink item
             ///
@@ -76,6 +77,7 @@ nonisolated struct Drinks: Codable {
                 sponsor: "[Holland & Odam](https://www.hollandandodam.co.uk)",
                 sponsorTel: "01458 841411",
                 untappd: "https://untappd.com/b/badgworth-brewhouse-badgworth-ipa/5416133",
+                onSale: true,
                 canRate: true
             )
         }

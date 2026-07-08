@@ -67,8 +67,10 @@ struct DrinksView: View {
                                     ForEach(sortedItems(by: category)) { item in
 
                                         BeerItemTitleView(item: item)
+                                            .blur(radius: item.onSale ? 0 : 3)
 
                                         BeerItemDetailView(item: item)
+                                            .blur(radius: item.onSale ? 0 : 3)
 
                                         // If a drink item can be rated this will show either the a button to rate or the rating of the drink item
                                         if item.canRate {
@@ -106,6 +108,7 @@ struct DrinksView: View {
                                                         .frame(maxWidth: .infinity, alignment: .center)
                                                 }
                                                 .buttonStyle(.bordered)
+                                                .disabled(!item.onSale)
                                             }
                                         }
 
@@ -199,9 +202,7 @@ struct DrinksView: View {
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
-                Task {
-                    await fetch()
-                }
+                Task {  await fetch() }
             }
         }
     }
