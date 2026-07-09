@@ -35,8 +35,8 @@ struct BeerItemDetailView: View {
             Link("Telephone: \(phone)", destination: URL(string: "tel:\(phone.formatted)")!)
         }
 
-        if let untappd = item.untappd, let untappdURL = URL(string: untappd) {
-            Link(destination: untappdURL) {
+        if let untappd = item.untappd {
+            Link(destination: untappd) {
                 HStack(spacing: 2) {
                     Text("More details on ")
                     Image(.untappdIcon)
