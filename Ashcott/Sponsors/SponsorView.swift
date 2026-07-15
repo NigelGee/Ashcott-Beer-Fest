@@ -23,9 +23,9 @@ struct SponsorView: View {
                             Text(sponsor.displayDescription)
 
                             if horizontalSizeClass == .compact {
-                                SponsorImageView(sponsor: sponsor)
+                                SponsorImageView(image: sponsor.image)
                             } else {
-                                SponsorImageView(sponsor: sponsor)
+                                SponsorImageView(image: sponsor.image)
                                     .frame(maxWidth: 500)
                             }
 
@@ -68,8 +68,8 @@ struct SponsorView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let sponsorItem = try await URLSession.shared.decode(Sponsorship.self, from: "\(Base.url.rawValue)Sponsorship.json")
-            async let charityItem = try await URLSession.shared.decode(CharityDetails.self, from: "\(Base.url.rawValue)Charities.json")
+            async let sponsorItem = try await URLSession.shared.decode(Sponsorship.self, from: API.baseURL + API.jsonFile.sponsorship)
+            async let charityItem = try await URLSession.shared.decode(CharityDetails.self, from: API.baseURL + API.jsonFile.charities)
             sponsor = try await sponsorItem
             charity = try await charityItem
         } catch {

@@ -22,7 +22,7 @@ struct InformationView: View {
             Group {
                 if let info {
                     ScrollView {
-                        InfoImageView(info: info)
+                        InfoImageView(image: info.image)
 
                         VStack {
                             InfoTextView(info: info)
@@ -78,7 +78,7 @@ struct InformationView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let item = try await URLSession.shared.decode(Information.self, from: "\(Base.url.rawValue)Information.json", dateDecodingStrategy: .formatted(.date))
+            async let item = try await URLSession.shared.decode(Information.self, from: API.baseURL + API.jsonFile.information, dateDecodingStrategy: .formatted(.date))
             info = try await item
         } catch {
             print("Failed to fetch data!")

@@ -60,7 +60,3 @@ extension URLSession {
         return decoded
     }
 }
-
-enum Base: String {
-    case url = "https://nigelgee.github.io/beerFestResources/"
-}

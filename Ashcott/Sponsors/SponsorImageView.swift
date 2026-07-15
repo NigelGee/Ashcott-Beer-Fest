@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SponsorImageView: View {
-    let sponsor: Sponsorship
-    
+    let image: String
+
     var body: some View {
-        AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(sponsor.image)")) { phase in
+        AsyncImage(url: URL(string: API.baseURL + API.image + image)) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -30,29 +30,15 @@ struct SponsorImageView: View {
             @unknown default:
                 fatalError("A new image phase")
             }
-//            if let image = phase.image {
-//                image
-//                    .resizable()
-//                    .scaledToFit()
-//            } else if phase.error != nil {
-//                Image(systemName: "photo")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 100, height: 100)
-//                    .clipShape(.rect(cornerRadius: 10))
-//            } else {
-//                ProgressView()
-//                    .frame(width: 100, height: 100)
-//            }
         }
     }
 }
 
 #Preview("Light") {
-    SponsorImageView(sponsor: .example)
+    SponsorImageView(image: "committee.jpg")
 }
 
 #Preview("Dark") {
-    SponsorImageView(sponsor: .example)
+    SponsorImageView(image: "committee.jpg")
         .preferredColorScheme(.dark)
 }

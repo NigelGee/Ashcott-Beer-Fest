@@ -73,7 +73,7 @@ struct LocationView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let item = try await URLSession.shared.decode(Location.self, from: "\(Base.url.rawValue)Location.json")
+            async let item = try await URLSession.shared.decode(Location.self, from: API.baseURL + API.jsonFile.location)
             loc = try await item
         } catch {
             loadingError.toggle()

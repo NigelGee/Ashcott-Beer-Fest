@@ -105,7 +105,7 @@ struct EntertainmentView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let items = try await URLSession.shared.decode(Entertainment.self, from: "\(Base.url.rawValue)Entertainment.json", dateDecodingStrategy: .formatted(.dateTime))
+            async let items = try await URLSession.shared.decode(Entertainment.self, from: API.baseURL + API.jsonFile.entertainment, dateDecodingStrategy: .formatted(.dateTime))
             entertainment = try await items
         } catch {
             loadingError.toggle()

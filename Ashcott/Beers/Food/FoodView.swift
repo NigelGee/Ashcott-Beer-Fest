@@ -76,7 +76,7 @@ struct FoodView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let items = try await URLSession.shared.decode(Food.self, from: "\(Base.url.rawValue)Food.json")
+            async let items = try await URLSession.shared.decode(Food.self, from: API.baseURL + API.jsonFile.food)
             food = try await items
         } catch {
             print("Failed to fetch data!")

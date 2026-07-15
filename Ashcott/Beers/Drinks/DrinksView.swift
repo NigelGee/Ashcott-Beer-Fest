@@ -68,6 +68,7 @@ struct DrinksView: View {
 
                                         BeerItemTitleView(item: item)
                                             .blur(radius: item.onSale ? 0 : 3)
+                                            .strikethrough(item.soldOut)
 
                                         BeerItemDetailView(item: item)
                                             .blur(radius: item.onSale ? 0 : 3)
@@ -212,7 +213,7 @@ struct DrinksView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let drinkItems = try await URLSession.shared.decode(Drinks.self, from: "\(Base.url.rawValue)Drinks.json")
+            async let drinkItems = try await URLSession.shared.decode(Drinks.self, from: API.baseURL + API.jsonFile.drinks)
             drinks = try await drinkItems
         } catch {
             loadingError.toggle()

@@ -12,7 +12,7 @@ struct NewsImageView: View {
 
     var body: some View {
         if let image = item.image {
-            AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(image)")) { phase in
+            AsyncImage(url: URL(string: API.baseURL + API.image + image)) { phase in
                 switch phase {
                 case .empty:
                     ProgressView()

@@ -50,7 +50,7 @@ struct ContentView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let items = try await URLSession.shared.decode([NewsItem].self, from: "\(Base.url.rawValue)News.json", dateDecodingStrategy: .formatted(.date))
+            async let items = try await URLSession.shared.decode([NewsItem].self, from: API.baseURL + API.jsonFile.news, dateDecodingStrategy: .formatted(.date))
             newsItems = try await items
         } catch {
             print("Failed to fetch data!")

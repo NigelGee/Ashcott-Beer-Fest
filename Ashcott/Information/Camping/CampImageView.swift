@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct CampImageView: View {
-    let camp: Camping
+    let image: String
 
     var body: some View {
-        AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(camp.image)")) { phase in
+        AsyncImage(url: URL(string: API.baseURL + API.image + image)) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -34,5 +34,5 @@ struct CampImageView: View {
 }
 
 #Preview {
-    CampImageView(camp: .example)
+    CampImageView(image: "campSite.jpg")
 }

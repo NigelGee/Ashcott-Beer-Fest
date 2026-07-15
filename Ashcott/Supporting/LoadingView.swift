@@ -11,10 +11,9 @@ struct LoadingView: View {
     var body: some View {
         VStack {
             VStack {
-                ProgressView()
+                ProgressView("Loading…")
                     .scaleEffect(2)
                     .padding()
-                Text("Loading…")
             }
         }
     }

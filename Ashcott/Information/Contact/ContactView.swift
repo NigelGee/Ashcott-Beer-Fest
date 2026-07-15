@@ -106,7 +106,7 @@ struct ContactView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let item = try await URLSession.shared.decode(Contact.self, from: "\(Base.url.rawValue)Contact.json")
+            async let item = try await URLSession.shared.decode(Contact.self, from: API.baseURL + API.jsonFile.contact)
             contact = try await item
         } catch {
             loadingError.toggle()

@@ -16,7 +16,9 @@ struct TicketPriceView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         HStack {
-                            TicketImageView(price: price)
+                            if let image = price.image {
+                                TicketImageView(image: image)
+                            }
 
                             Text(price.type)
                                 .font(.title3)

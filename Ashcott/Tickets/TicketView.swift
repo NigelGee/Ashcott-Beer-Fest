@@ -58,7 +58,7 @@ struct TicketView: View {
         do  {
             async let item = try await URLSession.shared.decode(
                 Ticket.self,
-                from: "\(Base.url.rawValue)Tickets.json",
+                from: API.baseURL + API.jsonFile.tickets,
                 dateDecodingStrategy: .formatted(.dateTime)
             )
             ticket = try await item

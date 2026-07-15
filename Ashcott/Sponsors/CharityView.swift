@@ -25,12 +25,12 @@ struct CharityView: View {
                         }
 
                         if horizontalSizeClass == .compact {
-                            CharityImageView(charity: charity)
+                            CharityImageView(image: charity.image)
 
                             Text(charity.displayDetail)
                         } else {
                             HStack {
-                                CharityImageView(charity: charity)
+                                CharityImageView(image: charity.image)
                                     .frame(maxWidth: 270)
 
                                 Text(charity.displayDetail)

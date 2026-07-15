@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CharityImageView: View {
-    let charity: CharityDetails.Charity
+    let image: String
     var body: some View {
-        AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(charity.image)")) { phase in
+        AsyncImage(url: URL(string: API.baseURL + API.image + image)) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -34,10 +34,10 @@ struct CharityImageView: View {
 }
 
 #Preview("Light") {
-    CharityImageView(charity: .example)
+    CharityImageView(image: "school.jpg")
 }
 
 #Preview("Dark") {
-    CharityImageView(charity: .example)
+    CharityImageView(image: "school.jpg")
         .preferredColorScheme(.dark)
 }

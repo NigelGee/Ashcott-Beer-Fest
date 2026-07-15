@@ -18,7 +18,7 @@ struct CampView: View {
             if let camp {
                 ScrollView {
 
-                    CampImageView(camp: camp)
+                    CampImageView(image: camp.image)
 
                     VStack {
                         Text(camp.displayWelcomeText)
@@ -27,6 +27,7 @@ struct CampView: View {
                             .padding(.vertical)
 
                         Text(camp.displayBodyText)
+                            .padding(.bottom)
                     }
                     .padding(.horizontal)
                 }
@@ -57,7 +58,7 @@ struct CampView: View {
     /// and `.task { await fetch() }`
     func fetch() async {
         do  {
-            async let item = try await URLSession.shared.decode(Camping.self, from: "\(Base.url.rawValue)Camping.json")
+            async let item = try await URLSession.shared.decode(Camping.self, from: API.baseURL + API.jsonFile.camping)
             camp = try await item
         } catch {
             loadingError.toggle()

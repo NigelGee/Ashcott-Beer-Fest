@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct InfoImageView: View {
-    let info: Information
+    let image: String
 
     var body: some View {
-        AsyncImage(url: URL(string: "\(Base.url.rawValue)images/\(info.image)")) { phase in
+        AsyncImage(url: URL(string: API.baseURL + API.image + image)) { phase in
             switch phase {
             case .empty:
                 ProgressView()
@@ -36,13 +36,13 @@ struct InfoImageView: View {
 
 #Preview("Light") {
     VStack {
-        InfoImageView(info: .example)
-        InfoImageView(info: .imageExample)
+        InfoImageView(image: "header.png")
+        InfoImageView(image: "downOnTheFarm.png")
     }
 }
 
 #Preview("Dark") {
-    InfoImageView(info: .example)
-    InfoImageView(info: .imageExample)
+    InfoImageView(image: "header.png")
+    InfoImageView(image: "downOnTheFarm.png")
         .preferredColorScheme(.dark)
 }

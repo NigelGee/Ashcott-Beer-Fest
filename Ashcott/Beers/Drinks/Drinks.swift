@@ -45,6 +45,8 @@ nonisolated struct Drinks: Codable {
 
             var onSale: Bool
 
+            var soldOut: Bool
+
             /// A property that if `true` will show a rating button or view
             var canRate: Bool
 
@@ -78,6 +80,7 @@ nonisolated struct Drinks: Codable {
                 sponsorTel: "01458 841411",
                 untappd: URL(string: "https://untappd.com/b/badgworth-brewhouse-badgworth-ipa/5416133"),
                 onSale: true,
+                soldOut: false,
                 canRate: true
             )
         }
