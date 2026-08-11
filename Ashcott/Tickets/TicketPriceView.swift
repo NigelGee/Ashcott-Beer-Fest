@@ -16,8 +16,10 @@ struct TicketPriceView: View {
                 HStack {
                     VStack(alignment: .leading) {
                         HStack {
-                            if let image = price.image {
-                                TicketImageView(image: image)
+                            if let image = price.image, let url = URL(string: API.baseURL + API.image + image) {
+                                CacheAsyncImage(for: image, url: url)
+                                    .clipShape(.rect(cornerRadius: 10))
+                                    .frame(width: 60, height: 60)
                             }
 
                             Text(price.type)
@@ -56,10 +58,12 @@ struct TicketPriceView: View {
 #Preview("Light") {
     TicketPriceView(ticket: .example)
         .padding()
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     TicketPriceView(ticket: .example)
         .padding()
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }

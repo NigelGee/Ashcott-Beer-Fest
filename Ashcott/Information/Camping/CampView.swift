@@ -17,8 +17,10 @@ struct CampView: View {
         Group {
             if let camp {
                 ScrollView {
-
-                    CampImageView(image: camp.image)
+                    if let url = URL(string: API.baseURL + API.image + camp.image) {
+                        CacheAsyncImage(for: camp.image, url: url)
+                            .frame(minHeight: 100)
+                    }
 
                     VStack {
                         Text(camp.displayWelcomeText)
@@ -70,6 +72,7 @@ struct CampView: View {
     NavigationStack {
         CampView()
     }
+    .environment(ImageCache())
 }
 
 #Preview("Dark") {
@@ -77,5 +80,6 @@ struct CampView: View {
         CampView()
             .preferredColorScheme(.dark)
     }
+    .environment(ImageCache())
 }
 

@@ -22,11 +22,15 @@ struct SponsorView: View {
 
                             Text(sponsor.displayDescription)
 
-                            if horizontalSizeClass == .compact {
-                                SponsorImageView(image: sponsor.image)
-                            } else {
-                                SponsorImageView(image: sponsor.image)
-                                    .frame(maxWidth: 500)
+                            if let url = URL(string: API.baseURL + API.image + sponsor.image) {
+                                if horizontalSizeClass == .compact {
+                                    CacheAsyncImage(for: sponsor.image, url: url)
+                                        .clipShape(.rect(cornerRadius: 15))
+                                } else {
+                                    CacheAsyncImage(for: sponsor.image, url: url)
+                                        .clipShape(.rect(cornerRadius: 15))
+                                        .frame(maxWidth: 500)
+                                }
                             }
 
                             GroupBox(sponsor.yearTitle) {
@@ -80,9 +84,11 @@ struct SponsorView: View {
 
 #Preview("Light") {
     SponsorView()
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     SponsorView()
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }

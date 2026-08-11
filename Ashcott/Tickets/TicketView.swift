@@ -70,9 +70,11 @@ struct TicketView: View {
 
 #Preview("Light") {
     TicketView()
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     TicketView()
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }

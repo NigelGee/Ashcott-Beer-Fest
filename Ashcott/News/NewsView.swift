@@ -37,8 +37,11 @@ struct NewsView: View {
                             }
                         }
 
-                        NewsImageView(item: item)
-
+                        if let image = item.image, let url = URL(string: API.baseURL + API.image + image) {
+                            CacheAsyncImage(for: image, url: url)
+                                .frame(height: 200)
+                                .clipShape(.rect(cornerRadius: 15))
+                        }
                     }
                     .listRowBackground(bgPurpleColor(controlDate >= item.newsDate , or: withoutColor))
                 }
@@ -52,9 +55,11 @@ struct NewsView: View {
 
 #Preview("Light") {
     NewsView(newsItems: [.example, .example2])
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     NewsView(newsItems: [.example, .example2])
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }

@@ -24,16 +24,18 @@ struct CharityView: View {
                                 .accessibilityLabel("\(charity.title) website")
                         }
 
-                        if horizontalSizeClass == .compact {
-                            CharityImageView(image: charity.image)
-
-                            Text(charity.displayDetail)
-                        } else {
-                            HStack {
-                                CharityImageView(image: charity.image)
-                                    .frame(maxWidth: 270)
+                        if let url = URL(string: API.baseURL + API.image + charity.image) {
+                            if horizontalSizeClass == .compact {
+                                CacheAsyncImage(for: charity.image, url: url)
 
                                 Text(charity.displayDetail)
+                            } else {
+                                HStack {
+                                    CacheAsyncImage(for: charity.image, url: url)
+                                        .frame(maxWidth: 270)
+
+                                    Text(charity.displayDetail)
+                                }
                             }
                         }
                     }
@@ -46,10 +48,12 @@ struct CharityView: View {
 #Preview("Light") {
     CharityView(charity: .example)
         .padding()
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     CharityView(charity: .example)
         .padding()
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }

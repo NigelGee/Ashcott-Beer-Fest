@@ -43,8 +43,10 @@ nonisolated struct Drinks: Codable {
             /// A property that holds the url to drink's Untappd page
             var untappd: URL?
 
+            /// A property that determines if a barrel is available to sell (Not in reserve).
             var onSale: Bool
-
+            
+            /// A property that determines if a barrel is finished.
             var soldOut: Bool
 
             /// A property that if `true` will show a rating button or view

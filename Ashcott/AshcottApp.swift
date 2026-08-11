@@ -11,9 +11,12 @@ import TipKit
 
 @main
 struct AshcottApp: App {
+    @State private var imageCache = ImageCache()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(imageCache)
         }
         .modelContainer(for: RatedDrink.self)
     }

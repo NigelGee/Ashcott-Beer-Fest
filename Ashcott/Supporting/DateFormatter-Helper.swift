@@ -8,7 +8,6 @@
 import Foundation
 
 extension DateFormatter {
-
     /// A formatter that for "dd/MM/yyyy"
     static var date: DateFormatter {
         let formatter = DateFormatter()

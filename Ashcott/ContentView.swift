@@ -60,9 +60,11 @@ struct ContentView: View {
 
 #Preview("Light") {
     ContentView()
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     ContentView()
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }

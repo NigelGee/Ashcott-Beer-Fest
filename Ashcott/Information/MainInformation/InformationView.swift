@@ -22,7 +22,10 @@ struct InformationView: View {
             Group {
                 if let info {
                     ScrollView {
-                        InfoImageView(image: info.image)
+                        if let url = URL(string: API.baseURL + API.image + info.image) {
+                            CacheAsyncImage(for: info.image, url: url)
+                                .frame(height: 160)
+                        }
 
                         VStack {
                             InfoTextView(info: info)
@@ -88,9 +91,11 @@ struct InformationView: View {
 
 #Preview("Light") {
     InformationView()
+        .environment(ImageCache())
 }
 
 #Preview("Dark") {
     InformationView()
         .preferredColorScheme(.dark)
+        .environment(ImageCache())
 }
