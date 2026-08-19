@@ -27,7 +27,7 @@ struct InformationView: View {
                             CacheAsyncImage(for: info.image, url: url)
                                 .containerRelativeFrame(.vertical) { height, axis in
                                     if sizeClass == .compact {
-                                        return 160
+                                        return .infinity
                                     } else {
                                         return height * 0.3
                                     }
