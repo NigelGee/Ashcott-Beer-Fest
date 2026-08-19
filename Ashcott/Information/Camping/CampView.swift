@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CampView: View {
+    @Environment(\.horizontalSizeClass) var sizeClass
     @State private var camp: Camping?
     @State private var loadingError = false
 
@@ -19,7 +20,14 @@ struct CampView: View {
                 ScrollView {
                     if let url = URL(string: API.baseURL + API.image + camp.image) {
                         CacheAsyncImage(for: camp.image, url: url)
-                            .frame(minHeight: 100)
+                            .containerRelativeFrame(.vertical) { height, axis in
+                                if sizeClass == .compact {
+                                    return 160
+                                } else {
+                                    return height * 0.3
+                                }
+                            }
+                            .clipShape(.rect(cornerRadius: 15))
                     }
 
                     VStack {

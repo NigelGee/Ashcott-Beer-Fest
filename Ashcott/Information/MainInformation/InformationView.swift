@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InformationView: View {
     @AppStorage("selectedTab") var selectedTab: Tabs = .info
+    @Environment(\.horizontalSizeClass) var sizeClass
 
     @State private var info: Information?
     @State private var loadingError = false
@@ -24,7 +25,14 @@ struct InformationView: View {
                     ScrollView {
                         if let url = URL(string: API.baseURL + API.image + info.image) {
                             CacheAsyncImage(for: info.image, url: url)
-                                .frame(height: 160)
+                                .containerRelativeFrame(.vertical) { height, axis in
+                                    if sizeClass == .compact {
+                                        return 160
+                                    } else {
+                                        return height * 0.3
+                                    }
+                                }
+                                .clipShape(.rect(cornerRadius: 15))
                         }
 
                         VStack {

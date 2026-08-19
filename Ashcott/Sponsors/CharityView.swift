@@ -27,12 +27,14 @@ struct CharityView: View {
                         if let url = URL(string: API.baseURL + API.image + charity.image) {
                             if horizontalSizeClass == .compact {
                                 CacheAsyncImage(for: charity.image, url: url)
+                                    .clipShape(.rect(cornerRadius: 15))
 
                                 Text(charity.displayDetail)
                             } else {
                                 HStack {
                                     CacheAsyncImage(for: charity.image, url: url)
                                         .frame(maxWidth: 270)
+                                        .clipShape(.rect(cornerRadius: 15))
 
                                     Text(charity.displayDetail)
                                 }
